@@ -1,0 +1,73 @@
+package model;
+
+import java.util.ArrayList;
+
+/**
+ * This class is for creating Sandwiches and calculating the prices for them.
+ * @author Henry Rodriguez
+ */
+public class Sandwich extends MenuItem{
+    protected Bread bread;
+    protected Protein protein;
+    protected ArrayList<Addons> addOns;
+
+    /**
+     * Constructor for Sandwich with 3 parameters.
+     * @param bread A Bread object representing the type of bread of the sandwich.
+     * @param protein A Protein object representing the type of protein of the sandwich.
+     * @param addOns An ArrayList of Addons containing all the addons added to the sandwich.
+     */
+    public Sandwich(Bread bread, Protein protein, ArrayList<Addons> addOns){
+        this.bread = bread;
+        this.protein = protein;
+        this.addOns = addOns;
+    }
+
+    /**
+     * Getter method for getting the bread of the sandwich.
+     * @return A Bread object that represents the bread of the sandwich.
+     */
+    public Bread getBread() {
+        return bread;
+    }
+
+    /**
+     * Getter method for getting the protein of the sandwich.
+     * @return A Protein object that represents the protein of the sandwich.
+     */
+    public Protein getProtein() {
+        return protein;
+    }
+
+    /**
+     * Getter method for getting the ArrayList of Addons
+     * @return An ArrayList of the addons added to the sandwich.
+     */
+    public ArrayList<Addons> getAddOns() {
+        return addOns;
+    }
+
+    /**
+     * Overriden price() method that calculates the price of the sandwich.
+     * @return A double representing the price of the sandwich.
+     */
+    @Override
+    public double price() {
+        double price = 0;
+
+        price += this.protein.getPrice();
+
+        if(addOns.isEmpty()){
+            return price;
+        }
+        else{
+            for (Addons addon : addOns){
+                price += addon.getPrice();
+            }
+        }
+
+        return price;
+    }
+
+
+}
