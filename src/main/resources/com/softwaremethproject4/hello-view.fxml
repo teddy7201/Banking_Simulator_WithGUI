@@ -1,16 +1,450 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelloController">
+  <left>
+    <VBox prefHeight="550.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-border-color: lightgrey; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+      <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+      </padding>
+      <Label text="Order Menu">
+        <font>
+          <Font name="System Bold" size="14.0"/>
+        </font>
+      </Label>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Sandwich" onAction="#onSandwichButtonClick"/>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Burger" onAction="#onBurgerButtonClick"/>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Beverage" onAction="#onBeverageButtonClick"/>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Side" onAction="#onSideButtonClick"/>
+      <Label text="Manage Orders">
+        <font>
+          <Font name="System Bold" size="14.0"/>
+        </font>
+        <VBox.margin>
+          <Insets top="20.0"/>
+        </VBox.margin>
+      </Label>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Current Order" onAction="#onCurrentOrderButtonClick"/>
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="All Placed Orders" onAction="#onAllOrdersButtonClick"/>
+    </VBox>
+  </left>
+
+  <center>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <children>
+        <!-- Sandwich Ordering Pane -->
+        <VBox fx:id="sandwichPane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="15.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+          </padding>
+          <children>
+            <Label text="Order Sandwich">
+              <font>
+                <Font name="System Bold" size="18.0"/>
+              </font>
+            </Label>
+            <GridPane hgap="10.0" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <Label text="Bread:" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="sandwichBreadOptionCB" prefWidth="150.0" promptText="Select Bread" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Protein:" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="sandwichProteinCB" prefWidth="150.0" promptText="Select Protein" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Add-ons:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <VBox spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                  <children>
+                    <CheckBox mnemonicParsing="false" text="Lettuce ($0.30)"/>
+                    <CheckBox mnemonicParsing="false" text="Tomatoes ($0.30)"/>
+                    <CheckBox mnemonicParsing="false" text="Onions ($0.30)"/>
+                    <CheckBox mnemonicParsing="false" text="Avocado ($0.50)"/>
+                    <CheckBox mnemonicParsing="false" text="Cheese ($1.00)"/>
+                  </children>
+                </VBox>
+                <Label text="Quantity:" GridPane.rowIndex="2"/>
+                <Spinner initialValue="1" max="10" min="1" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+              </children>
+            </GridPane>
+            <CheckBox fx:id="sandwichMakeComboCB" mnemonicParsing="false" text="Make this a Combo" onAction="#onSandwichMakeComboAction"/>
+            <VBox fx:id="sandwichComboExtras" spacing="10.0" visible="false">
+              <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                  <children>
+                    <Label text="Combo Side:"/>
+                    <ComboBox fx:id="sandwichComboSideTypeCB" prefWidth="200.0" promptText="Select Side"/>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                  <children>
+                    <Label text="Combo Drink:"/>
+                    <ComboBox fx:id="sandwichComboDrinkTypeCB" prefWidth="200.0" promptText="Select Drink"/>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+              <children>
+                <Label text="Item Price:">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+                <Label text="\$0.00">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Add Sandwich to Order">
+              <font>
+                <Font size="14.0"/>
+              </font>
+            </Button>
+          </children>
+        </VBox>
+        <!-- Burger Ordering Pane -->
+        <VBox fx:id="burgerPane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="15.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+          </padding>
+          <children>
+            <Label text="Order Burger">
+              <font>
+                <Font name="System Bold" size="18.0"/>
+              </font>
+            </Label>
+            <GridPane hgap="10.0" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <Label text="Bread:"/>
+                <ComboBox fx:id="burgerBreadCB" prefWidth="150.0" promptText="Select Bread" GridPane.columnIndex="1"/>
+                <Label text="Patty:" GridPane.rowIndex="1"/>
+                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <children>
+                    <RadioButton mnemonicParsing="false" selected="true" text="Single">
+                      <toggleGroup>
+                        <ToggleGroup/>
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" text="Double (+$2.50)" toggleGroup="$burgerPattyGroup"/>
+                  </children>
+                </HBox>
+                <Label text="Add-ons:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <VBox spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                  <children>
+                    <CheckBox mnemonicParsing="false" text="Lettuce ($0.30)"/>
+                    <CheckBox mnemonicParsing="false" text="Tomatoes ($0.30)"/>
+                    <CheckBox mnemonicParsing="false" text="Onions ($0.30)"/>
+                    <CheckBox mnemonicParsing="false" text="Avocado ($0.50)"/>
+                    <CheckBox mnemonicParsing="false" text="Cheese ($1.00)"/>
+                  </children>
+                </VBox>
+                <Label text="Quantity:" GridPane.rowIndex="2"/>
+                <Spinner initialValue="1" max="10" min="1" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+              </children>
+            </GridPane>
+            <CheckBox fx:id="burgerMakeComboCB" mnemonicParsing="false" text="Make this a Combo" onAction="#onBurgerMakeComboAction"/>
+            <VBox fx:id="burgerComboExtras" spacing="10.0" visible="false">
+              <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                  <children>
+                    <Label text="Combo Side:"/>
+                    <ComboBox fx:id="burgerComboSideTypeCB" prefWidth="200.0" promptText="Select Side"/>
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                  <children>
+                    <Label text="Combo Drink:"/>
+                    <ComboBox fx:id="burgerComboDrinkTypeCB" prefWidth="200.0" promptText="Select Drink"/>
+                  </children>
+                </HBox>
+              </children>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+              <children>
+                <Label text="Item Price:">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+                <Label text="\$0.00">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Add Burger to Order">
+              <font>
+                <Font size="14.0"/>
+              </font>
+            </Button>
+          </children>
+        </VBox>
+        <!-- Drink Ordering Pane -->
+        <VBox fx:id="beveragePane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="15.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+          </padding>
+          <children>
+            <Label text="Order Beverage">
+              <font>
+                <Font name="System Bold" size="18.0"/>
+              </font>
+            </Label>
+            <GridPane hgap="10.0" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <Label text="Flavor:"/>
+                <ComboBox fx:id="BeverageFlavorCB" prefWidth="200.0" promptText="Select Flavor" GridPane.columnIndex="1"/>
+                <Label text="Size:" GridPane.rowIndex="1"/>
+                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <children>
+                    <RadioButton mnemonicParsing="false" selected="true" text="Small ($1.99)">
+                      <toggleGroup>
+                        <ToggleGroup/>
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" text="Medium ($2.49)" toggleGroup="$drinkSizeGroup"/>
+                    <RadioButton mnemonicParsing="false" text="Large ($2.99)" toggleGroup="$drinkSizeGroup"/>
+                  </children>
+                </HBox>
+                <Label text="Quantity:" GridPane.rowIndex="2"/>
+                <Spinner initialValue="1" max="10" min="1" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+              </children>
+            </GridPane>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+              <children>
+                <Label text="Item Price:">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+                <Label text="\$0.00">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Add Beverage to Order">
+              <font>
+                <Font size="14.0"/>
+              </font>
+            </Button>
+          </children>
+        </VBox>
+        <!-- Side Ordering Pane -->
+        <VBox fx:id="sidePane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="15.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+          </padding>
+          <children>
+            <Label text="Order Side">
+              <font>
+                <Font name="System Bold" size="18.0"/>
+              </font>
+            </Label>
+            <GridPane hgap="10.0" vgap="8.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="350.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <Label text="Type:"/>
+                <ComboBox fx:id="SideTypeCB" prefWidth="200.0" promptText="Select Side Type" GridPane.columnIndex="1"/>
+                <Label text="Size:" GridPane.rowIndex="1"/>
+                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <children>
+                    <RadioButton mnemonicParsing="false" selected="true" text="Small">
+                      <toggleGroup>
+                        <ToggleGroup/>
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" text="Medium (+$0.50)" toggleGroup="$sideSizeGroup"/>
+                    <RadioButton mnemonicParsing="false" text="Large (+$1.00)" toggleGroup="$sideSizeGroup"/>
+                  </children>
+                </HBox>
+                <Label text="Quantity:" GridPane.rowIndex="2"/>
+                <Spinner initialValue="1" max="10" min="1" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+              </children>
+            </GridPane>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+              <children>
+                <Label text="Item Price:">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+                <Label text="\$0.00">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="Add Side to Order">
+              <font>
+                <Font size="14.0"/>
+              </font>
+            </Button>
+          </children>
+        </VBox>
+        <!-- Current Order Pane -->
+        <VBox fx:id="currentOrderPane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+          </padding>
+          <children>
+            <Label text="Current Order Details">
+              <font>
+                <Font name="System Bold" size="18.0"/>
+              </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <children>
+                <Label text="Order Number:">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+                <Label text="[Auto-Generated]">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+            <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
+            <GridPane hgap="10.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+              </rowConstraints>
+              <children>
+                <Label text="Subtotal:" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308"/>
+                <Label text="Sales Tax (6.625%):" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1"/>
+                <Label text="Order Total:" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+                  <font>
+                    <Font name="System Bold" size="13.0"/>
+                  </font>
+                </Label>
+                <Label text="\$0.00" GridPane.columnIndex="1"/>
+                <Label text="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <font>
+                    <Font name="System Bold" size="13.0"/>
+                  </font>
+                </Label>
+              </children>
+              <VBox.margin>
+                <Insets left="350.0"/>
+              </VBox.margin>
+            </GridPane>
+            <HBox alignment="CENTER" spacing="20.0">
+              <children>
+                <Button mnemonicParsing="false" text="Remove Selected Item"/>
+                <Button mnemonicParsing="false" text="Clear All Items"/>
+                <Button mnemonicParsing="false" text="Place Order">
+                  <font>
+                    <Font name="System Bold" size="14.0"/>
+                  </font>
+                </Button>
+              </children>
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </HBox>
+          </children>
+        </VBox>
+        <!-- All Placed Orders Pane -->
+        <VBox fx:id="allOrdersPane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="10.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+          </padding>
+          <children>
+            <Label text="All Placed Orders">
+              <font>
+                <Font name="System Bold" size="18.0"/>
+              </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <children>
+                <Label text="Select Order Number:"/>
+                <ComboBox prefWidth="150.0" promptText="Order #"/>
+              </children>
+            </HBox>
+            <TextArea editable="false" prefHeight="250.0" prefWidth="200.0" promptText="Details for the selected order will appear here..." wrapText="true" VBox.vgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT" spacing="20.0">
+              <children>
+                <Button mnemonicParsing="false" text="Cancel Selected Order"/>
+                <Button mnemonicParsing="false" text="Export All Orders"/>
+              </children>
+              <VBox.margin>
+                <Insets top="10.0"/>
+              </VBox.margin>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </AnchorPane>
+  </center>
+</BorderPane>
