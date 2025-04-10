@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/combo-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/combo-panel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744070742655</updated>
       <workItem from="1744070743825" duration="12118000" />
-      <workItem from="1744153810734" duration="12814000" />
+      <workItem from="1744153810734" duration="14740000" />
     </task>
     <servers />
   </component>

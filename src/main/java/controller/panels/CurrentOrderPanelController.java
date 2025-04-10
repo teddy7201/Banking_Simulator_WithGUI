@@ -76,8 +76,16 @@ public class CurrentOrderPanelController {
 
     @FXML
     protected void onPlaceOrderClick() {
-        System.out.println("Order placed!");
-        OrderManager.getInstance().startNewOrder();
+        // Place the order and get the order ID
+        String orderId = OrderManager.getInstance().placeOrder();
+
+        if (orderId == null) {
+            // Order was empty, nothing to place
+            System.out.println("Cannot place empty order");
+            return;
+        }
+
+        System.out.println("Order placed with ID: " + orderId);
         refreshOrderView();
 
         // Navigate back to main view (which has sidebar navigation)
