@@ -235,14 +235,6 @@ public class ComboPanelController {
     }
 
     /**
-     * Handle proceed to checkout button click
-     */
-    @FXML
-    private void onProceedToCheckoutClick() {
-        onAddToOrderClick(); // Reuse the same logic to add to order and navigate
-    }
-
-    /**
      * Handle back button click - return to the original item configuration screen
      */
     @FXML

@@ -6,25 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softwaremethproject4/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softwaremethproject4/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Addons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Addons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Beverage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Beverage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Burger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Burger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Combo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Combo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Flavor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Flavor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/beverage-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/beverage-panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/side-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/side-panel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/combo-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/combo-panel.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744070742655</updated>
       <workItem from="1744070743825" duration="12118000" />
-      <workItem from="1744153810734" duration="12047000" />
+      <workItem from="1744153810734" duration="12814000" />
     </task>
     <servers />
   </component>

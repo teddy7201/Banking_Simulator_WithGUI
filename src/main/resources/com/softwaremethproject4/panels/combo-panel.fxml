@@ -92,11 +92,6 @@
             <Font size="14.0"/>
           </font>
         </Button>
-        <Button mnemonicParsing="false" onAction="#onProceedToCheckoutClick" text="Proceed to Checkout">
-          <font>
-            <Font size="14.0"/>
-          </font>
-        </Button>
         <Button mnemonicParsing="false" onAction="#onBackToItemClick" text="Back">
           <font>
             <Font size="14.0"/>
