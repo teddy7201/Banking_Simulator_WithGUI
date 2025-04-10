@@ -19,19 +19,19 @@ public class PriceTest {
     public void setUp(){
         ArrayList<Addons> otl = new ArrayList<>();
         otl.add(Addons.ONIONS); otl.add(Addons.TOMATOES); otl.add(Addons.LETTUCE);
-        sandwich1 = new Sandwich(Bread.BRIOCHE, Protein.CHICKEN, otl); //8.99 + 0.30 + 0.30 + 0.30
+        sandwich1 = new Sandwich(Bread.BRIOCHE, Protein.CHICKEN, otl, 1); //8.99 + 0.30 + 0.30 + 0.30
 
         ArrayList<Addons> oac = new ArrayList<>();
         oac.add(Addons.ONIONS); oac.add(Addons.AVOCADO); oac.add(Addons.CHEESE);
-        sandwich2 = new Sandwich(Bread.WHEAT_BREAD, Protein.ROAST_BEEF, oac); //10.99 + 0.30 + 0.50 + 1.00
+        sandwich2 = new Sandwich(Bread.WHEAT_BREAD, Protein.ROAST_BEEF, oac, 1); //10.99 + 0.30 + 0.50 + 1.00
 
         ArrayList<Addons> cheese = new ArrayList<>();
         cheese.add(Addons.CHEESE);
-        sandwich3 = new Sandwich(Bread.BAGEL, Protein.SALMON, cheese); //9.99 + 1.00
+        sandwich3 = new Sandwich(Bread.BAGEL, Protein.SALMON, cheese, 1); //9.99 + 1.00
 
-        singlePattyBurger = new Burger(Bread.BRIOCHE, Protein.BEEF_PATTY, otl, false); //6.99 + 0.30 + 0.30 + 0.30
+        singlePattyBurger = new Burger(Bread.BRIOCHE, Protein.BEEF_PATTY, otl, false, 1); //6.99 + 0.30 + 0.30 + 0.30
 
-        doublePattyBurger = new Burger(Bread.PRETZEL, Protein.BEEF_PATTY, oac, true); //6.99 + 2.50 + 0.30 + 0.50 + 1.00
+        doublePattyBurger = new Burger(Bread.PRETZEL, Protein.BEEF_PATTY, oac, true, 1); //6.99 + 2.50 + 0.30 + 0.50 + 1.00
     }
 
     @Test
