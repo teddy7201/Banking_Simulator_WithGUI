@@ -42,6 +42,18 @@ public class OrderManager {
     }
 
     /**
+     * Check if the current order is empty
+     *
+     * @return 1 if the order is empty, 0 if it is not
+     */
+    public Integer isOrderEmpty() {
+        if (currentOrder.getItems().isEmpty()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
      * Add an item to the current order
      *
      * @param item MenuItem to add to the order
@@ -153,7 +165,7 @@ public class OrderManager {
         private double total;
 
         public ArchivedOrder(String orderId, String timestamp, ArrayList<MenuItem> items,
-                             double subtotal, double tax, double total) {
+                double subtotal, double tax, double total) {
             this.orderId = orderId;
             this.timestamp = timestamp;
             this.items = items;

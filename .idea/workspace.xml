@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="Fixed price bug, implmented logic to let the gui write orders to a file, updated All Orders screen and fixed up smaller details within the model and controllers.">
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/PriceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/PriceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +60,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/Images" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PriceTest">
+  <component name="RunManager" selected="Application.HelloApplication">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.softwaremethproject4.HelloApplication" />
       <module name="Software-Meth-Project-4" />
@@ -91,8 +91,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PriceTest" />
         <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="JUnit.PriceTest" />
       </list>
     </recent_temporary>
   </component>

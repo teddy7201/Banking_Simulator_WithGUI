@@ -45,7 +45,7 @@ public class CurrentOrderPanelController {
 
         // Get the current order from OrderManager
         Order currentOrder = OrderManager.getInstance().getCurrentOrder();
-        orderNumberLabel.setText(String.format("%d",currentOrder.getNumber()));
+        orderNumberLabel.setText(String.format("%d", currentOrder.getNumber()));
         // Add all items to the ListView
         for (MenuItem item : currentOrder.getItems()) {
             String itemDescription = item.toString() + " - $" + String.format("%.2f", item.price());
@@ -71,6 +71,9 @@ public class CurrentOrderPanelController {
     @FXML
     protected void onClearAllItemsClick() {
         // Start a new order in OrderManager
+        if (OrderManager.getInstance().isOrderEmpty() == 1) {
+            return;
+        }
         OrderManager.getInstance().startNewOrder();
 
         // Update the view
