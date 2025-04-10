@@ -7,11 +7,11 @@ public enum Addons {
     AVOCADO("Avocado", 0.50),
     CHEESE("Cheese", 1.00);
 
-    //    Lettuce
-//    Tomatoes
-//            Onions
-//    Avocado
-//            Cheese
+    // Lettuce
+    // Tomatoes
+    // Onions
+    // Avocado
+    // Cheese
     private String addonType;
     private double price;
 
@@ -20,7 +20,11 @@ public enum Addons {
         this.price = price;
     }
 
-    public String getAddonType() {return addonType;}
+    public String getAddonType() {
+        return addonType;
+    }
 
-    public double getPrice() {return price;}
+    public double getPrice() {
+        return price;
+    }
 }

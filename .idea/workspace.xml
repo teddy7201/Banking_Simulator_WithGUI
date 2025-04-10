@@ -5,12 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/Images/burger.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/Images/sandwich.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softwaremethproject4/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softwaremethproject4/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Addons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Addons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Beverage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Beverage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Burger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Burger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Combo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Combo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Flavor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Flavor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Side.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/beverage-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/beverage-panel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/side-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/side-panel.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,18 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Vortes"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Vortes&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/teddy7201/Software-Meth-Project-4.git",
-    "accountId": "fc7b30a9-ca9c-41e7-80a8-e46cded07297"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/teddy7201/Software-Meth-Project-4.git&quot;,
+    &quot;accountId&quot;: &quot;fc7b30a9-ca9c-41e7-80a8-e46cded07297&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -39,9 +53,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2vQIC8gbshugiMd29wRPo7F68qI" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
@@ -52,6 +66,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
+    "JUnit.PriceTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -78,7 +93,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744070742655</updated>
-      <workItem from="1744070743825" duration="10877000" />
+      <workItem from="1744070743825" duration="12118000" />
+      <workItem from="1744153810734" duration="12047000" />
     </task>
     <servers />
   </component>

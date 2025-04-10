@@ -17,8 +17,13 @@ public enum Flavor {
     SELTZER("Seltzer"),
     DIET_DR_PEPPER("Diet Dr Pepper");
 
-
     private String flavorName;
 
-    Flavor(String flavorName){this.flavorName = flavorName;}
+    Flavor(String flavorName) {
+        this.flavorName = flavorName;
+    }
+
+    public String getFlavorName() {
+        return flavorName;
+    }
 }

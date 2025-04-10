@@ -12,8 +12,14 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+// Import the model classes
+import model.*;
 
 public class BurgerPanelController {
     @FXML
@@ -195,25 +201,139 @@ public class BurgerPanelController {
 
     @FXML
     protected void onAddBurgerToOrderClick() {
-        // Add burger to order logic
-        System.out.println("Adding burger to order: " + createBurgerDescription());
+        try {
+            // Determine bread type
+            Bread selectedBread;
+            if (burgerBreadCB.getValue() != null) {
+                switch (burgerBreadCB.getValue()) {
+                    case "Brioche":
+                        selectedBread = Bread.BRIOCHE;
+                        break;
+                    case "Wheat Bread":
+                        selectedBread = Bread.WHEAT_BREAD;
+                        break;
+                    case "Pretzel":
+                        selectedBread = Bread.PRETZEL;
+                        break;
+                    default:
+                        selectedBread = Bread.BRIOCHE;
+                }
+            } else {
+                selectedBread = Bread.BRIOCHE;
+            }
+
+            // Protein is always beef patty for burgers
+            Protein selectedProtein = Protein.BEEF_PATTY;
+
+            // Create list of addons
+            ArrayList<Addons> addons = new ArrayList<>();
+            if (lettuceCB.isSelected())
+                addons.add(Addons.LETTUCE);
+            if (tomatoesCB.isSelected())
+                addons.add(Addons.TOMATOES);
+            if (onionsCB.isSelected())
+                addons.add(Addons.ONIONS);
+            if (avocadoCB.isSelected())
+                addons.add(Addons.AVOCADO);
+            if (cheeseCB.isSelected())
+                addons.add(Addons.CHEESE);
+
+            // Determine if double patty is selected
+            boolean isDoublePatty = doublePattyRB.isSelected();
+
+            // Create the burger
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty);
+
+            // Set quantity if more than 1
+            if (burgerQuantitySpinner.getValue() > 1) {
+                // Multiple burgers will be added as separate items
+                for (int i = 0; i < burgerQuantitySpinner.getValue(); i++) {
+                    OrderManager.getInstance().addItemToOrder(burger);
+                }
+            } else {
+                // Add to the order manager
+                OrderManager.getInstance().addItemToOrder(burger);
+            }
+
+            // Navigate to the current order panel using the main view with sidebar
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
+            Parent root = loader.load();
+
+            // Get the MainController to set the current order panel as visible
+            controller.MainController mainController = loader.getController();
+            mainController.navigateToCurrentOrderPanel();
+
+            // Get the scene and set it
+            Stage stage = (Stage) ((Node) burgerPane).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     protected void onMakeComboClick() {
         try {
+            // Create the burger first
+            Bread selectedBread;
+            if (burgerBreadCB.getValue() != null) {
+                switch (burgerBreadCB.getValue()) {
+                    case "Brioche":
+                        selectedBread = Bread.BRIOCHE;
+                        break;
+                    case "Wheat Bread":
+                        selectedBread = Bread.WHEAT_BREAD;
+                        break;
+                    case "Pretzel":
+                        selectedBread = Bread.PRETZEL;
+                        break;
+                    default:
+                        selectedBread = Bread.BRIOCHE;
+                }
+            } else {
+                selectedBread = Bread.BRIOCHE;
+            }
+
+            // Protein is always beef patty for burgers
+            Protein selectedProtein = Protein.BEEF_PATTY;
+
+            // Create list of addons
+            ArrayList<Addons> addons = new ArrayList<>();
+            if (lettuceCB.isSelected())
+                addons.add(Addons.LETTUCE);
+            if (tomatoesCB.isSelected())
+                addons.add(Addons.TOMATOES);
+            if (onionsCB.isSelected())
+                addons.add(Addons.ONIONS);
+            if (avocadoCB.isSelected())
+                addons.add(Addons.AVOCADO);
+            if (cheeseCB.isSelected())
+                addons.add(Addons.CHEESE);
+
+            // Determine if double patty is selected
+            boolean isDoublePatty = doublePattyRB.isSelected();
+
+            // Create the burger
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty);
+
+            // Load the combo panel and get its controller
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/softwaremethproject4/panels/combo-panel.fxml"));
-            Parent comboView = loader.load();
+            Parent root = loader.load();
 
-            // Get the controller and initialize it with burger details
+            // Initialize the combo panel with burger details
             ComboPanelController comboController = loader.getController();
             double basePrice = calculateBurgerPrice();
-            comboController.initializeWithItem("Burger", null, basePrice, createBurgerDescription());
+            comboController.initializeWithItem("Burger", burger, basePrice, createBurgerDescription());
 
-            // Get the current scene and set the new content
-            Scene currentScene = burgerPane.getScene();
-            currentScene.setRoot(comboView);
+            // Switch to the combo scene
+            Stage stage = (Stage) ((Node) burgerPane).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

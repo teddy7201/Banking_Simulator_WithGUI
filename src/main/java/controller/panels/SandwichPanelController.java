@@ -10,8 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+// Import the model classes
+import model.*;
 
 public class SandwichPanelController {
     @FXML
@@ -174,25 +180,129 @@ public class SandwichPanelController {
 
     @FXML
     protected void onAddSandwichToOrderClick() {
-        // Add sandwich to order logic
-        System.out.println("Adding sandwich to order: " + createSandwichDescription());
+        try {
+            // Determine bread type
+            Bread selectedBread;
+            if (sandwichBreadOptionCB.getValue() != null) {
+                switch (sandwichBreadOptionCB.getValue()) {
+                    case "Brioche":
+                        selectedBread = Bread.BRIOCHE;
+                        break;
+                    case "Wheat Bread":
+                        selectedBread = Bread.WHEAT_BREAD;
+                        break;
+                    case "Pretzel":
+                        selectedBread = Bread.PRETZEL;
+                        break;
+                    case "Sourdough":
+                        selectedBread = Bread.SOURDOUGH;
+                        break;
+                    default:
+                        selectedBread = Bread.BRIOCHE;
+                }
+            } else {
+                selectedBread = Bread.BRIOCHE;
+            }
+
+            // Determine protein type
+            Protein selectedProtein;
+            if (sandwichProteinCB.getValue() != null) {
+                switch (sandwichProteinCB.getValue()) {
+                    case "Roast Beef":
+                        selectedProtein = Protein.ROAST_BEEF;
+                        break;
+                    case "Salmon":
+                        selectedProtein = Protein.SALMON;
+                        break;
+                    case "Chicken":
+                        selectedProtein = Protein.CHICKEN;
+                        break;
+                    default:
+                        selectedProtein = Protein.CHICKEN;
+                }
+            } else {
+                selectedProtein = Protein.CHICKEN;
+            }
+
+            // Create list of addons
+            ArrayList<Addons> addons = new ArrayList<>();
+            if (lettuceCB.isSelected())
+                addons.add(Addons.LETTUCE);
+            if (tomatoesCB.isSelected())
+                addons.add(Addons.TOMATOES);
+            if (onionsCB.isSelected())
+                addons.add(Addons.ONIONS);
+            if (avocadoCB.isSelected())
+                addons.add(Addons.AVOCADO);
+            if (cheeseCB.isSelected())
+                addons.add(Addons.CHEESE);
+
+            // Create the sandwich
+            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons);
+
+            // Add to the order manager
+            OrderManager.getInstance().addItemToOrder(sandwich);
+
+            // Navigate to the current order panel using the main view with sidebar
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
+            Parent root = loader.load();
+
+            // Get the MainController to set the current order panel as visible
+            controller.MainController mainController = loader.getController();
+            mainController.navigateToCurrentOrderPanel();
+
+            // Get the scene and set it
+            Stage stage = (Stage) ((Node) sandwichPane).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     protected void onMakeComboClick() {
         try {
+            // Create the sandwich first
+            Bread selectedBread = sandwichBreadOptionCB.getValue() != null
+                    ? Bread.valueOf(sandwichBreadOptionCB.getValue().toUpperCase().replace(" ", "_"))
+                    : Bread.BRIOCHE;
+
+            Protein selectedProtein = sandwichProteinCB.getValue() != null
+                    ? Protein.valueOf(sandwichProteinCB.getValue().toUpperCase().replace(" ", "_"))
+                    : Protein.CHICKEN;
+
+            ArrayList<Addons> addons = new ArrayList<>();
+            if (lettuceCB.isSelected())
+                addons.add(Addons.LETTUCE);
+            if (tomatoesCB.isSelected())
+                addons.add(Addons.TOMATOES);
+            if (onionsCB.isSelected())
+                addons.add(Addons.ONIONS);
+            if (avocadoCB.isSelected())
+                addons.add(Addons.AVOCADO);
+            if (cheeseCB.isSelected())
+                addons.add(Addons.CHEESE);
+
+            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons);
+
+            // Load the combo panel with sidebar navigation
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/softwaremethproject4/panels/combo-panel.fxml"));
-            Parent comboView = loader.load();
+            Parent root = loader.load();
 
-            // Get the controller and initialize it with sandwich details
+            // Initialize the combo panel with sandwich details
             ComboPanelController comboController = loader.getController();
             double basePrice = calculateSandwichPrice();
-            comboController.initializeWithItem("Sandwich", null, basePrice, createSandwichDescription());
+            comboController.initializeWithItem("Sandwich", sandwich, basePrice, createSandwichDescription());
 
-            // Get the current scene and set the new content
-            Scene currentScene = sandwichPane.getScene();
-            currentScene.setRoot(comboView);
+            // Switch to the combo scene
+            Stage stage = (Stage) ((Node) sandwichPane).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

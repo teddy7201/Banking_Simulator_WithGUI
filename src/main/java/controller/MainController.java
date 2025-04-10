@@ -1,7 +1,10 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
+import javafx.scene.Parent;
+import controller.panels.SandwichPanelController;
 
 public class MainController {
     // Panel references from fx:include
@@ -23,10 +26,16 @@ public class MainController {
     @FXML
     private VBox allOrdersPanel;
 
+    private SandwichPanelController sandwichController;
+
     @FXML
     public void initialize() {
-        // Show the sandwich panel initially
-        showSandwichPanel();
+        try {
+            // Show the sandwich panel initially
+            showSandwichPanel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -97,4 +106,21 @@ public class MainController {
         currentOrderPanel.setVisible(false);
         allOrdersPanel.setVisible(false);
     }
+
+    /**
+     * Public method to show sandwich panel that can be called from other
+     * controllers
+     */
+    public void navigateToSandwichPanel() {
+        showSandwichPanel();
+    }
+
+    /**
+     * Public method to show current order panel that can be called from other
+     * controllers
+     */
+    public void navigateToCurrentOrderPanel() {
+        showCurrentOrderPanel();
+    }
+
 }
