@@ -6,7 +6,7 @@ package model;
  */
 public enum Bread {
     BRIOCHE("Brioche"),
-    WHEAT_BREAD("Wheat bread"),
+    WHEAT_BREAD("Wheat Bread"),
     PRETZEL("Pretzel"),
     BAGEL("Bagel"),
     SOURDOUGH("Sourdough");
