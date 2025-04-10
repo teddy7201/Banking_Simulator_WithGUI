@@ -7,7 +7,7 @@ public class Burger extends Sandwich {
 
     /**
      * Constructor for Burger with 4 parameters.
-     * 
+     *
      * @param bread       A Bread object representing the type of bread of the
      *                    burger.
      * @param protein     A Protein object representing the type of protein of the
@@ -24,7 +24,7 @@ public class Burger extends Sandwich {
 
     /**
      * This method indicates if the burger has a double patty or not.
-     * 
+     *
      * @return True if the burger has a double patty, otherwise false.
      */
     public boolean isDoublePatty() {
@@ -33,7 +33,7 @@ public class Burger extends Sandwich {
 
     /**
      * Overriden price() method that calculates the price of the burger.
-     * 
+     *
      * @return A double representing the price of the burger.
      */
     @Override

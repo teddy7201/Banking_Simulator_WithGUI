@@ -84,7 +84,7 @@ public class AllOrdersPanelController implements Initializable {
         try (BufferedWriter bw = new BufferedWriter(new PrintWriter("orders.txt"))) {
             bw.write(report.toString());
         }
-         catch (IOException e) {
+        catch (IOException e) {
             e.printStackTrace();
         }
         createSuccessPopUp();

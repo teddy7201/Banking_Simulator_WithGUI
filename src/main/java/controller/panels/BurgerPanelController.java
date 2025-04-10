@@ -109,7 +109,7 @@ public class BurgerPanelController {
 
     /**
      * Calculate the current burger price
-     * 
+     *
      * @return The total price of the burger with selected options
      */
     private double calculateBurgerPrice() {
@@ -140,7 +140,7 @@ public class BurgerPanelController {
 
     /**
      * Create a description of the burger configuration
-     * 
+     *
      * @return String description of the burger
      */
     private String createBurgerDescription() {

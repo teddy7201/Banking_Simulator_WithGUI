@@ -49,7 +49,7 @@ public class SidePanelController {
                 ((RadioButton) toggle).setOnAction(e -> updatePrice());
             }
         }
-
+        sideQuantitySpinner.setOnMousePressed(e -> updatePrice());
         // Initial price update
         updatePrice();
     }
@@ -64,7 +64,7 @@ public class SidePanelController {
 
     /**
      * Calculate the current side price
-     * 
+     *
      * @return The total price of the side with selected options
      */
     private double calculateSidePrice() {
@@ -109,7 +109,7 @@ public class SidePanelController {
 
     /**
      * Create a description of the side configuration
-     * 
+     *
      * @return String description of the side
      */
     private String createSideDescription() {

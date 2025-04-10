@@ -111,7 +111,7 @@ public class SandwichPanelController {
 
     /**
      * Calculate the current sandwich price
-     * 
+     *
      * @return The total price of the sandwich with selected options
      */
     private double calculateSandwichPrice() {
@@ -150,7 +150,7 @@ public class SandwichPanelController {
 
     /**
      * Create a description of the sandwich configuration
-     * 
+     *
      * @return String description of the sandwich
      */
     private String createSandwichDescription() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This class is for creating Sandwiches and calculating the prices for them.
- * 
+ *
  * @author Henry Rodriguez
  */
 public class Sandwich extends MenuItem {
@@ -14,7 +14,7 @@ public class Sandwich extends MenuItem {
 
     /**
      * Constructor for Sandwich with 3 parameters.
-     * 
+     *
      * @param bread   A Bread object representing the type of bread of the sandwich.
      * @param protein A Protein object representing the type of protein of the
      *                sandwich.
@@ -30,7 +30,7 @@ public class Sandwich extends MenuItem {
 
     /**
      * Getter method for getting the bread of the sandwich.
-     * 
+     *
      * @return A Bread object that represents the bread of the sandwich.
      */
     public Bread getBread() {
@@ -39,7 +39,7 @@ public class Sandwich extends MenuItem {
 
     /**
      * Getter method for getting the protein of the sandwich.
-     * 
+     *
      * @return A Protein object that represents the protein of the sandwich.
      */
     public Protein getProtein() {
@@ -48,7 +48,7 @@ public class Sandwich extends MenuItem {
 
     /**
      * Getter method for getting the ArrayList of Addons
-     * 
+     *
      * @return An ArrayList of the addons added to the sandwich.
      */
     public ArrayList<Addons> getAddOns() {
@@ -57,7 +57,7 @@ public class Sandwich extends MenuItem {
 
     /**
      * Overriden price() method that calculates the price of the sandwich.
-     * 
+     *
      * @return A double representing the price of the sandwich.
      */
     @Override

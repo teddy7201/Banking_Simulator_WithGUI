@@ -65,7 +65,7 @@ public class BeveragePanelController {
 
     /**
      * Calculate the current beverage price
-     * 
+     *
      * @return The total price of the beverage with selected options
      */
     private double calculateBeveragePrice() {
@@ -92,10 +92,10 @@ public class BeveragePanelController {
 
     @FXML
     protected void onAddBeverageToOrderClick() {
-       if(checkEmptyFields()){
-           createPopUp();
-           return;
-       }
+        if(checkEmptyFields()){
+            createPopUp();
+            return;
+        }
         try {
             // Determine flavor type
             Flavor selectedFlavor = null;

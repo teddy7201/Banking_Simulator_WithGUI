@@ -34,7 +34,7 @@ public class OrderManager {
 
     /**
      * Get the current order
-     * 
+     *
      * @return The current order
      */
     public Order getCurrentOrder() {
@@ -43,7 +43,7 @@ public class OrderManager {
 
     /**
      * Add an item to the current order
-     * 
+     *
      * @param item MenuItem to add to the order
      */
     public void addItemToOrder(MenuItem item) {
@@ -53,7 +53,7 @@ public class OrderManager {
     /**
      * Place the current order, moving it to the archived orders, and create a new
      * empty order
-     * 
+     *
      * @return The order ID of the placed order
      */
     public String placeOrder() {
@@ -99,7 +99,7 @@ public class OrderManager {
 
     /**
      * Get all archived order IDs
-     * 
+     *
      * @return Array of order IDs
      */
     public String[] getArchivedOrderIds() {
@@ -108,7 +108,7 @@ public class OrderManager {
 
     /**
      * Get an archived order by ID
-     * 
+     *
      * @param orderId The order ID
      * @return The archived order, or null if not found
      */
@@ -118,7 +118,7 @@ public class OrderManager {
 
     /**
      * Remove an archived order by ID
-     * 
+     *
      * @param orderId The order ID to remove
      * @return true if the order was removed, false if it wasn't found
      */
@@ -153,7 +153,7 @@ public class OrderManager {
         private double total;
 
         public ArchivedOrder(String orderId, String timestamp, ArrayList<MenuItem> items,
-                double subtotal, double tax, double total) {
+                             double subtotal, double tax, double total) {
             this.orderId = orderId;
             this.timestamp = timestamp;
             this.items = items;

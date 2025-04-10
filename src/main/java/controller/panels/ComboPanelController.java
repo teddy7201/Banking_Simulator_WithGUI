@@ -78,7 +78,7 @@ public class ComboPanelController {
 
     /**
      * Initialize the combo panel with the item details
-     * 
+     *
      * @param itemType    The type of item ("Burger" or "Sandwich")
      * @param item        The original item object
      * @param basePrice   The base price of the item

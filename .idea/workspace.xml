@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="">
+    <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="Fixed price bug, implmented logic to let the gui write orders to a file, updated All Orders screen and fixed up smaller details within the model and controllers.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Beverage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Beverage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Burger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Burger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Combo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Combo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderArchive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/current-order-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/current-order-panel.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,16 +56,16 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "JUnit.PriceTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "henry",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PriceTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;henry&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/Images" />
@@ -113,6 +109,19 @@
       <workItem from="1744070743825" duration="12118000" />
       <workItem from="1744153810734" duration="14740000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed price bug, implmented logic to let the gui write orders to a file, updated All Orders screen and fixed up smaller details within the model and controllers.">
+      <option name="closed" value="true" />
+      <created>1744324884142</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744324884142</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed price bug, implmented logic to let the gui write orders to a file, updated All Orders screen and fixed up smaller details within the model and controllers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed price bug, implmented logic to let the gui write orders to a file, updated All Orders screen and fixed up smaller details within the model and controllers." />
   </component>
 </project>

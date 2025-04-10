@@ -37,8 +37,4 @@ public class Beverage extends MenuItem {
         return String.format("%s\n Size: %s Quantity: %d", flavor.getFlavorName(), size.getSizeName(), quantity);
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s\n %s", flavor.getFlavorName(), size.getSizeName());
-    }
 }
