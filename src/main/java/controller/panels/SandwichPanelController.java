@@ -10,8 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import model.Addons;
+import model.Bread;
+import model.Protein;
+import model.Sandwich;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class SandwichPanelController {
     @FXML
@@ -47,20 +54,11 @@ public class SandwichPanelController {
     @FXML
     private CheckBox cheeseCB;
 
-    // Base price for a sandwich
-    private static final double BASE_SANDWICH_PRICE = 8.99;
-
-    // Add-on prices
-    private static final double LETTUCE_PRICE = 0.30;
-    private static final double TOMATOES_PRICE = 0.30;
-    private static final double ONIONS_PRICE = 0.30;
-    private static final double AVOCADO_PRICE = 0.50;
-    private static final double CHEESE_PRICE = 1.00;
 
     @FXML
     public void initialize() {
         // Initialize combo boxes
-        sandwichBreadOptionCB.getItems().addAll("Brioche", "Wheat Bread", "Pretzel", "Sourdough");
+        sandwichBreadOptionCB.getItems().addAll("Brioche", "Wheat Bread", "Pretzel", "Sourdough", "Bagel");
         sandwichProteinCB.getItems().addAll("Roast Beef", "Salmon", "Chicken");
 
         // Set up listeners to update price when options change
@@ -80,19 +78,28 @@ public class SandwichPanelController {
      * Update the sandwich price based on selected options
      */
     private void updatePrice() {
-        double price = BASE_SANDWICH_PRICE;
+        double price = 0;
+        if(Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())){
+            price += Protein.CHICKEN.getPrice();
+        }
+        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())){
+            price += Protein.SALMON.getPrice();
+        }
+        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())){
+            price += Protein.ROAST_BEEF.getPrice();
+        }
 
         // Add costs for selected add-ons
         if (lettuceCB.isSelected())
-            price += LETTUCE_PRICE;
+            price += Addons.LETTUCE.getPrice();
         if (tomatoesCB.isSelected())
-            price += TOMATOES_PRICE;
+            price += Addons.TOMATOES.getPrice();
         if (onionsCB.isSelected())
-            price += ONIONS_PRICE;
+            price += Addons.ONIONS.getPrice();
         if (avocadoCB.isSelected())
-            price += AVOCADO_PRICE;
+            price += Addons.AVOCADO.getPrice();
         if (cheeseCB.isSelected())
-            price += CHEESE_PRICE;
+            price += Addons.CHEESE.getPrice();
 
         // Update the displayed price
         sandwichPriceLabel.setText(String.format("$%.2f", price));
@@ -104,19 +111,28 @@ public class SandwichPanelController {
      * @return The total price of the sandwich with selected options
      */
     private double calculateSandwichPrice() {
-        double price = BASE_SANDWICH_PRICE;
+        double price = 0;
+        if(Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())){
+            price += Protein.CHICKEN.getPrice();
+        }
+        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())){
+            price += Protein.SALMON.getPrice();
+        }
+        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())){
+            price += Protein.ROAST_BEEF.getPrice();
+        }
 
         // Add costs for selected add-ons
         if (lettuceCB.isSelected())
-            price += LETTUCE_PRICE;
+            price += Addons.LETTUCE.getPrice();
         if (tomatoesCB.isSelected())
-            price += TOMATOES_PRICE;
+            price += Addons.TOMATOES.getPrice();
         if (onionsCB.isSelected())
-            price += ONIONS_PRICE;
+            price += Addons.ONIONS.getPrice();
         if (avocadoCB.isSelected())
-            price += AVOCADO_PRICE;
+            price += Addons.AVOCADO.getPrice();
         if (cheeseCB.isSelected())
-            price += CHEESE_PRICE;
+            price += Addons.CHEESE.getPrice();
 
         // Multiply by quantity
         price *= sandwichQuantitySpinner.getValue();
@@ -173,9 +189,66 @@ public class SandwichPanelController {
     }
 
     @FXML
-    protected void onAddSandwichToOrderClick() {
-        // Add sandwich to order logic
-        System.out.println("Adding sandwich to order: " + createSandwichDescription());
+    protected void onAddSandwichToOrderClick() throws IOException {
+        Sandwich addingSanwich = createSandwich();
+        //System.out.println(addingSanwich.toString());
+
+        URL url = getClass().getResource("/com/softwaremethproject4/panels/current-order-panel.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+
+        CurrentOrderPanelController controller = loader.getController();
+
+        for(int i = 0; i < sandwichQuantitySpinner.getValue(); i++){
+            controller.addToCurrentOrder(addingSanwich);
+        }
+
+
+//        System.out.println(fxmlResource.toString());
+    }
+
+    private Sandwich createSandwich(){
+        Bread bread = null;
+        if(Objects.equals(sandwichBreadOptionCB.getValue(), Bread.WHEAT_BREAD.getBreadType())){
+            bread = Bread.WHEAT_BREAD;
+        }
+        else if(Objects.equals(sandwichBreadOptionCB.getValue(), Bread.BRIOCHE.getBreadType())){
+            bread = Bread.BRIOCHE;
+        }
+        else if(Objects.equals(sandwichBreadOptionCB.getValue(), Bread.BAGEL.getBreadType())){
+            bread = Bread.BAGEL;
+        }
+        else if(Objects.equals(sandwichBreadOptionCB.getValue(), Bread.SOURDOUGH.getBreadType())){
+            bread = Bread.SOURDOUGH;
+        }
+        else if(Objects.equals(sandwichBreadOptionCB.getValue(), Bread.PRETZEL.getBreadType())){
+            bread = Bread.PRETZEL;
+        }
+
+        Protein protein = null;
+        if(Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())){
+            protein = Protein.CHICKEN;
+        }
+        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())){
+            protein = Protein.SALMON;
+        }
+        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())){
+            protein = Protein.ROAST_BEEF;
+        }
+
+        ArrayList<Addons> addons = new ArrayList<>();
+        if (lettuceCB.isSelected())
+            addons.add(Addons.LETTUCE);
+        if (tomatoesCB.isSelected())
+            addons.add(Addons.TOMATOES);
+        if (onionsCB.isSelected())
+            addons.add(Addons.ONIONS);
+        if (avocadoCB.isSelected())
+            addons.add(Addons.AVOCADO);
+        if (cheeseCB.isSelected())
+            addons.add(Addons.CHEESE);
+
+        Sandwich newSandwich = new Sandwich(bread, protein, addons);
+        return newSandwich;
     }
 
     @FXML

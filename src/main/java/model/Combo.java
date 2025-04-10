@@ -28,4 +28,8 @@ public class Combo extends MenuItem{
         return this.sandwich.price() + 2.00;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Combo:\n %s\n %s\n %s\n", sandwich.toString(), beverage.toString(), side.toString());
+    }
 }

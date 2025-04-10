@@ -21,4 +21,6 @@ public enum Flavor {
     private String flavorName;
 
     Flavor(String flavorName){this.flavorName = flavorName;}
+
+    public String getFlavorName() {return flavorName;}
 }

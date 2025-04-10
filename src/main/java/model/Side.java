@@ -24,4 +24,9 @@ public class Side {
 
         return price;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s\n %s", type.getSideName(), size.getSizeName());
+    }
 }

@@ -47,4 +47,26 @@ public class Burger extends Sandwich{
         }
         return price;
     }
+
+    @Override
+    public String toString() {
+        String pattySD;
+        if(doublePatty){
+            pattySD = "Double Patty";
+        }
+        else{
+            pattySD = "Single Patty";
+        }
+
+        if(addOns.isEmpty()){
+            return String.format("Burger\n Bread: %s Protein: %s Addons: None", bread.getBreadType(), pattySD);
+        }
+
+        StringBuilder addonNames = new StringBuilder();
+        for (Addons addon : addOns){
+            addonNames.append(addon.getAddonType() + " ");
+        }
+
+        return String.format("Burger\n Bread: %s Protein: %s Addons: %s", bread.getBreadType(), pattySD, addonNames);
+    }
 }

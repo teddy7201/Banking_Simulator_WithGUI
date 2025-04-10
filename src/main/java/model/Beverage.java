@@ -24,4 +24,8 @@ public class Beverage extends MenuItem{
         return 2.99;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s\n %s", flavor.getFlavorName(), size.getSizeName());
+    }
 }

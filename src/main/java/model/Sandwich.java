@@ -69,5 +69,18 @@ public class Sandwich extends MenuItem{
         return price;
     }
 
+    @Override
+    public String toString() {
+        if(addOns.isEmpty()){
+            return String.format("Sandwich\n Bread: %s Protein: %s Addons: None", bread.getBreadType(), protein.getProteinType());
+        }
+
+        StringBuilder addonNames = new StringBuilder();
+        for (Addons addon : addOns){
+            addonNames.append(addon.getAddonType() + " ");
+        }
+
+        return String.format("Sandwich\n Bread: %s Protein: %s Addons: %s", bread.getBreadType(), protein.getProteinType(), addonNames);
+    }
 
 }

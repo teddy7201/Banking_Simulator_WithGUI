@@ -1,7 +1,15 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainController {
     // Panel references from fx:include
@@ -22,6 +30,10 @@ public class MainController {
 
     @FXML
     private VBox allOrdersPanel;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     public void initialize() {
@@ -84,9 +96,14 @@ public class MainController {
         currentOrderPanel.setVisible(true);
     }
 
-    private void showAllOrdersPanel() {
+    private void showAllOrdersPanel(){
         hideAllPanels();
         allOrdersPanel.setVisible(true);
+//        root = FXMLLoader.load(getClass().getResource("all-orders-panel.fxml"));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     private void hideAllPanels() {
