@@ -4,12 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -35,11 +30,6 @@ public class SidePanelController {
     @FXML
     private Spinner<Integer> sideQuantitySpinner;
 
-    // Base prices for sides
-    private static final double CHIPS_PRICE = 1.99;
-    private static final double FRIES_PRICE = 2.49;
-    private static final double ONION_RINGS_PRICE = 3.29;
-    private static final double APPLE_SLICES_PRICE = 1.29;
 
     // Size upcharges
     private static final double MEDIUM_UPCHARGE = 0.50;
@@ -48,7 +38,9 @@ public class SidePanelController {
     @FXML
     public void initialize() {
         // Initialize combo boxes
-        sideTypeCB.getItems().addAll("Chips", "Fries", "Onion rings", "Apple Slices");
+        for (SideType currentSide: SideType.values()){
+            sideTypeCB.getItems().add(currentSide.getSideName());
+        }
 
         // Set up listeners to update price when options change
         sideTypeCB.setOnAction(e -> updatePrice());
@@ -82,22 +74,20 @@ public class SidePanelController {
         if (sideTypeCB.getValue() != null) {
             switch (sideTypeCB.getValue()) {
                 case "Chips":
-                    price = CHIPS_PRICE;
+                    price = SideType.CHIPS.getPrice();
                     break;
                 case "Fries":
-                    price = FRIES_PRICE;
+                    price = SideType.FRIES.getPrice();
                     break;
-                case "Onion rings":
-                    price = ONION_RINGS_PRICE;
+                case "Onion Rings":
+                    price = SideType.ONION_RINGS.getPrice();
                     break;
                 case "Apple Slices":
-                    price = APPLE_SLICES_PRICE;
+                    price = SideType.APPLE_SLICES.getPrice();
                     break;
                 default:
-                    price = CHIPS_PRICE;
+                    price = 0;
             }
-        } else {
-            price = CHIPS_PRICE; // Default price if nothing selected
         }
 
         // Add upcharge for size if applicable
@@ -113,6 +103,7 @@ public class SidePanelController {
             }
         }
 
+        price = price * sideQuantitySpinner.getValue();
         return price;
     }
 
@@ -156,6 +147,10 @@ public class SidePanelController {
 
     @FXML
     protected void onAddSideToOrderClick() {
+        if(checkEmptyFields()){
+            createPopUp();
+            return;
+        }
         try {
             // Determine side type
             SideType selectedSideType;
@@ -167,7 +162,7 @@ public class SidePanelController {
                     case "Fries":
                         selectedSideType = SideType.FRIES;
                         break;
-                    case "Onion rings":
+                    case "Onion Rings":
                         selectedSideType = SideType.ONION_RINGS;
                         break;
                     case "Apple Slices":
@@ -197,18 +192,8 @@ public class SidePanelController {
             }
 
             // Create the side
-            Side side = new Side(selectedSize, selectedSideType);
-
-            // Set quantity if more than 1
-            if (sideQuantitySpinner.getValue() > 1) {
-                // Multiple sides will be added as separate items
-                for (int i = 0; i < sideQuantitySpinner.getValue(); i++) {
-                    OrderManager.getInstance().addItemToOrder(side);
-                }
-            } else {
-                // Add to the order manager
-                OrderManager.getInstance().addItemToOrder(side);
-            }
+            Side side = new Side(selectedSize, selectedSideType, sideQuantitySpinner.getValue());
+            OrderManager.getInstance().addItemToOrder(side);
 
             // Navigate to the current order panel using the main view with sidebar
             FXMLLoader loader = new FXMLLoader(
@@ -227,5 +212,16 @@ public class SidePanelController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public boolean checkEmptyFields(){
+        return sideTypeCB.getValue() == null;
+    }
+
+    public void createPopUp(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Missing Data for creating food item.");
+        alert.setContentText("Please make sure you fill out all fields.");
+        alert.showAndWait();
     }
 }

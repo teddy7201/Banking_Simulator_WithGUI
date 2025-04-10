@@ -17,8 +17,8 @@ public class Burger extends Sandwich {
      * @param doublePatty A boolean indicating if the burger will have a double
      *                    patty or not.
      */
-    public Burger(Bread bread, Protein protein, ArrayList<Addons> addOns, boolean doublePatty) {
-        super(bread, protein, addOns);
+    public Burger(Bread bread, Protein protein, ArrayList<Addons> addOns, boolean doublePatty, int quantity) {
+        super(bread, protein, addOns, quantity);
         this.doublePatty = doublePatty;
     }
 
@@ -52,6 +52,7 @@ public class Burger extends Sandwich {
                 price += addon.getPrice();
             }
         }
+        price = price * quantity;
         return price;
     }
 
@@ -73,6 +74,6 @@ public class Burger extends Sandwich {
             addonNames.append(addon.getAddonType() + " ");
         }
 
-        return String.format("Burger\n Bread: %s Protein: %s Addons: %s", bread.getBreadType(), pattySD, addonNames);
+        return String.format("Burger\n Bread: %s Protein: %s Addons: %s Quantity: %d", bread.getBreadType(), pattySD, addonNames, quantity);
     }
 }

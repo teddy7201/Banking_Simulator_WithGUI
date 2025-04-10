@@ -4,9 +4,10 @@ public class Beverage extends MenuItem {
     private Size size;
     private Flavor flavor;
 
-    public Beverage(Size size, Flavor flavor) {
+    public Beverage(Size size, Flavor flavor, int quantity) {
         this.size = size;
         this.flavor = flavor;
+        this.quantity = quantity;
     }
 
     public Flavor getFlavor() {
@@ -19,17 +20,21 @@ public class Beverage extends MenuItem {
 
     @Override
     public double price() {
+        double price = 0;
         if (this.size == Size.SMALL) {
-            return 1.99;
+            price += 1.99;
         } else if (this.size == Size.MEDIUM) {
-            return 2.49;
+            price += 2.49;
         }
-        return 2.99;
+        else{
+            price += 2.99;
+        }
+        return price * quantity;
     }
 
     @Override
     public String toString() {
-        return String.format("%s\n %s", flavor.getFlavorName(), size.getSizeName());
+        return String.format("%s\n Size: %s Quantity: %d", flavor.getFlavorName(), size.getSizeName(), quantity);
     }
 
 }

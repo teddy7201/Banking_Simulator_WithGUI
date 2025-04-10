@@ -8,7 +8,7 @@ package model;
  * @author Henry Rodriguez
  */
 public abstract class MenuItem {
-    protected int quantiy;
+    protected int quantity;
 
     /**
      * An abstract method that will be used to calculate the price of the menu

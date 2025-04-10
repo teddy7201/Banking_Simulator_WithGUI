@@ -1,15 +1,11 @@
 package controller.panels;
 
+import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -61,16 +57,8 @@ public class BurgerPanelController {
     @FXML
     private CheckBox cheeseCB;
 
-    // Base price for a burger
-    private static final double BASE_BURGER_PRICE = 7.99;
     private static final double DOUBLE_PATTY_UPCHARGE = 2.50;
 
-    // Add-on prices
-    private static final double LETTUCE_PRICE = 0.30;
-    private static final double TOMATOES_PRICE = 0.30;
-    private static final double ONIONS_PRICE = 0.30;
-    private static final double AVOCADO_PRICE = 0.50;
-    private static final double CHEESE_PRICE = 1.00;
 
     @FXML
     public void initialize() {
@@ -86,7 +74,7 @@ public class BurgerPanelController {
         onionsCB.setOnAction(e -> updatePrice());
         avocadoCB.setOnAction(e -> updatePrice());
         cheeseCB.setOnAction(e -> updatePrice());
-
+        burgerQuantitySpinner.setOnMousePressed(e -> updatePrice());
         // Initial price update
         updatePrice();
     }
@@ -95,7 +83,7 @@ public class BurgerPanelController {
      * Update the burger price based on selected options
      */
     private void updatePrice() {
-        double price = BASE_BURGER_PRICE;
+        double price = Protein.BEEF_PATTY.getPrice();
 
         // Add cost for double patty if selected
         if (doublePattyRB.isSelected()) {
@@ -104,16 +92,17 @@ public class BurgerPanelController {
 
         // Add costs for selected add-ons
         if (lettuceCB.isSelected())
-            price += LETTUCE_PRICE;
+            price += Addons.LETTUCE.getPrice();
         if (tomatoesCB.isSelected())
-            price += TOMATOES_PRICE;
+            price += Addons.TOMATOES.getPrice();
         if (onionsCB.isSelected())
-            price += ONIONS_PRICE;
+            price += Addons.ONIONS.getPrice();
         if (avocadoCB.isSelected())
-            price += AVOCADO_PRICE;
+            price += Addons.AVOCADO.getPrice();
         if (cheeseCB.isSelected())
-            price += CHEESE_PRICE;
+            price += Addons.CHEESE.getPrice();
 
+        price *= burgerQuantitySpinner.getValue();
         // Update the displayed price
         burgerPriceLabel.setText(String.format("$%.2f", price));
     }
@@ -124,7 +113,7 @@ public class BurgerPanelController {
      * @return The total price of the burger with selected options
      */
     private double calculateBurgerPrice() {
-        double price = BASE_BURGER_PRICE;
+        double price = Protein.BEEF_PATTY.getPrice();
 
         // Add cost for double patty if selected
         if (doublePattyRB.isSelected()) {
@@ -133,15 +122,15 @@ public class BurgerPanelController {
 
         // Add costs for selected add-ons
         if (lettuceCB.isSelected())
-            price += LETTUCE_PRICE;
+            price += Addons.LETTUCE.getPrice();
         if (tomatoesCB.isSelected())
-            price += TOMATOES_PRICE;
+            price += Addons.TOMATOES.getPrice();
         if (onionsCB.isSelected())
-            price += ONIONS_PRICE;
+            price += Addons.ONIONS.getPrice();
         if (avocadoCB.isSelected())
-            price += AVOCADO_PRICE;
+            price += Addons.AVOCADO.getPrice();
         if (cheeseCB.isSelected())
-            price += CHEESE_PRICE;
+            price += Addons.CHEESE.getPrice();
 
         // Multiply by quantity
         price *= burgerQuantitySpinner.getValue();
@@ -201,9 +190,13 @@ public class BurgerPanelController {
 
     @FXML
     protected void onAddBurgerToOrderClick() {
+        if(checkEmptyFields()){
+            createPopUp();
+            return;
+        }
         try {
             // Determine bread type
-            Bread selectedBread;
+            Bread selectedBread = null;
             if (burgerBreadCB.getValue() != null) {
                 switch (burgerBreadCB.getValue()) {
                     case "Brioche":
@@ -218,10 +211,7 @@ public class BurgerPanelController {
                     default:
                         selectedBread = Bread.BRIOCHE;
                 }
-            } else {
-                selectedBread = Bread.BRIOCHE;
             }
-
             // Protein is always beef patty for burgers
             Protein selectedProtein = Protein.BEEF_PATTY;
 
@@ -242,7 +232,7 @@ public class BurgerPanelController {
             boolean isDoublePatty = doublePattyRB.isSelected();
 
             // Create the burger
-            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty);
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty, burgerQuantitySpinner.getValue());
 
             // Set quantity if more than 1
             if (burgerQuantitySpinner.getValue() > 1) {
@@ -261,7 +251,7 @@ public class BurgerPanelController {
             Parent root = loader.load();
 
             // Get the MainController to set the current order panel as visible
-            controller.MainController mainController = loader.getController();
+            MainController mainController = loader.getController();
             mainController.navigateToCurrentOrderPanel();
 
             // Get the scene and set it
@@ -276,6 +266,11 @@ public class BurgerPanelController {
 
     @FXML
     protected void onMakeComboClick() {
+        if(checkEmptyFields()){
+            createPopUp();
+            return;
+        }
+
         try {
             // Create the burger first
             Bread selectedBread;
@@ -317,7 +312,7 @@ public class BurgerPanelController {
             boolean isDoublePatty = doublePattyRB.isSelected();
 
             // Create the burger
-            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty);
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty, burgerQuantitySpinner.getValue());
 
             // Load the combo panel and get its controller
             FXMLLoader loader = new FXMLLoader(
@@ -337,5 +332,17 @@ public class BurgerPanelController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkEmptyFields(){
+        return burgerBreadCB.getValue() == null;
+    }
+
+    public void createPopUp(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Missing Data for creating food item.");
+        alert.setContentText("Please make sure you fill out all fields.");
+        alert.showAndWait();
     }
 }

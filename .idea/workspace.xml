@@ -5,9 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Beverage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Beverage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Burger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Burger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Combo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Combo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/MenuItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderArchive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Sandwich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Side.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/current-order-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/current-order-panel.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +53,7 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2vQIC8gbshugiMd29wRPo7F68qI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,7 +66,7 @@
     "JUnit.PriceTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "henry",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -60,6 +74,26 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/Images" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.softwaremethproject4.HelloApplication" />
+      <module name="Software-Meth-Project-4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.softwaremethproject4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

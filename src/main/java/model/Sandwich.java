@@ -21,10 +21,11 @@ public class Sandwich extends MenuItem {
      * @param addOns  An ArrayList of Addons containing all the addons added to the
      *                sandwich.
      */
-    public Sandwich(Bread bread, Protein protein, ArrayList<Addons> addOns) {
+    public Sandwich(Bread bread, Protein protein, ArrayList<Addons> addOns, int quantity) {
         this.bread = bread;
         this.protein = protein;
         this.addOns = addOns;
+        this.quantity = quantity;
     }
 
     /**
@@ -72,15 +73,15 @@ public class Sandwich extends MenuItem {
                 price += addon.getPrice();
             }
         }
-
+        price = price * quantity;
         return price;
     }
 
     @Override
     public String toString() {
         if (addOns.isEmpty()) {
-            return String.format("Sandwich\n Bread: %s Protein: %s Addons: None", bread.getBreadType(),
-                    protein.getProteinType());
+            return String.format("Sandwich\n Bread: %s Protein: %s Addons: None Quantity: %d", bread.getBreadType(),
+                    protein.getProteinType(), quantity);
         }
 
         StringBuilder addonNames = new StringBuilder();
@@ -88,8 +89,8 @@ public class Sandwich extends MenuItem {
             addonNames.append(addon.getAddonType() + " ");
         }
 
-        return String.format("Sandwich\n Bread: %s Protein: %s Addons: %s", bread.getBreadType(),
-                protein.getProteinType(), addonNames);
+        return String.format("Sandwich\n Bread: %s Protein: %s Addons: %s Quantity: %d", bread.getBreadType(),
+                protein.getProteinType(), addonNames, quantity);
     }
 
 }

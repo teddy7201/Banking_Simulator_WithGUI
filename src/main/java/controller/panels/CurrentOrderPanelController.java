@@ -28,6 +28,9 @@ public class CurrentOrderPanelController {
     private Label totalLabel;
 
     @FXML
+    private Label orderNumberLabel;
+
+    @FXML
     public void initialize() {
         // Load order items from OrderManager
         refreshOrderView();
@@ -42,7 +45,7 @@ public class CurrentOrderPanelController {
 
         // Get the current order from OrderManager
         Order currentOrder = OrderManager.getInstance().getCurrentOrder();
-
+        orderNumberLabel.setText(String.format("%d",currentOrder.getNumber()));
         // Add all items to the ListView
         for (MenuItem item : currentOrder.getItems()) {
             String itemDescription = item.toString() + " - $" + String.format("%.2f", item.price());
@@ -80,12 +83,9 @@ public class CurrentOrderPanelController {
         String orderId = OrderManager.getInstance().placeOrder();
 
         if (orderId == null) {
-            // Order was empty, nothing to place
-            System.out.println("Cannot place empty order");
             return;
         }
 
-        System.out.println("Order placed with ID: " + orderId);
         refreshOrderView();
 
         // Navigate back to main view (which has sidebar navigation)

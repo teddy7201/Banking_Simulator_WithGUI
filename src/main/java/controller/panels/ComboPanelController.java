@@ -4,11 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -66,11 +62,13 @@ public class ComboPanelController {
     @FXML
     public void initialize() {
         if (comboSideTypeCB.getItems().isEmpty()) {
-            comboSideTypeCB.getItems().addAll("Chips", "Apple", "French Fries");
+            comboSideTypeCB.getItems().addAll(SideType.CHIPS.getSideName(), SideType.APPLE_SLICES.getSideName(),
+                    SideType.FRIES.getSideName());
         }
 
         if (comboDrinkTypeCB.getItems().isEmpty()) {
-            comboDrinkTypeCB.getItems().addAll("Cola", "Tea", "Juice", "Water");
+            comboDrinkTypeCB.getItems().addAll(Flavor.COKE.getFlavorName(), Flavor.ICED_TEA.getFlavorName(),
+                    Flavor.APPLE_JUICE.getFlavorName(), Flavor.WATER.getFlavorName());
         }
 
         // Add listeners to update price when options change
@@ -116,9 +114,11 @@ public class ComboPanelController {
      */
     @FXML
     private void onAddToOrderClick() {
+        if(checkEmptyFields()){
+            createPopUp();
+            return;
+        }
         try {
-            // Create the beverage based on selection
-            // TODO: Add more flavors
             Flavor selectedFlavor;
             if (comboDrinkTypeCB.getValue() != null) {
                 switch (comboDrinkTypeCB.getValue()) {
@@ -157,7 +157,7 @@ public class ComboPanelController {
                 }
             }
 
-            Beverage beverage = new Beverage(drinkSize, selectedFlavor);
+            Beverage beverage = new Beverage(drinkSize, selectedFlavor, 1);
 
             // Create the side based on selection
             SideType selectedSideType;
@@ -197,16 +197,16 @@ public class ComboPanelController {
                 }
             }
 
-            Side side = new Side(sideSize, selectedSideType);
+            Side side = new Side(sideSize, selectedSideType, 1);
 
             // Create combo with original item, beverage, and side
             Combo combo;
             if (originalItem instanceof Sandwich) {
-                combo = new Combo((Sandwich) originalItem, beverage, side);
+                combo = new Combo((Sandwich) originalItem, beverage, side, 1);
             } else if (originalItem instanceof Burger) {
                 // Need to wrap Burger in a Combo
                 Sandwich burger = (Sandwich) originalItem; // Burger extends Sandwich
-                combo = new Combo(burger, beverage, side);
+                combo = new Combo(burger, beverage, side, 1);
             } else {
                 // Fallback case - should not happen if panels are working properly
                 throw new IllegalStateException("Unknown original item type in combo: " + itemType);
@@ -249,5 +249,17 @@ public class ComboPanelController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkEmptyFields(){
+        return comboSideTypeCB.getValue() == null || comboDrinkTypeCB.getValue() == null;
+    }
+
+    public void createPopUp(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Missing Data for creating food item.");
+        alert.setContentText("Please make sure you fill out all fields.");
+        alert.showAndWait();
     }
 }

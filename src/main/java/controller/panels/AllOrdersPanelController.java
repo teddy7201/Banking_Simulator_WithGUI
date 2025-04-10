@@ -8,6 +8,10 @@ import javafx.scene.control.TextArea;
 
 import model.OrderManager;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -45,30 +49,6 @@ public class AllOrdersPanelController implements Initializable {
     }
 
     @FXML
-    protected void onCancelSelectedOrderClick() {
-        String selectedOrder = orderNumberCB.getSelectionModel().getSelectedItem();
-        if (selectedOrder != null) {
-            // Remove the order from the OrderManager
-            OrderManager.getInstance().removeArchivedOrder(selectedOrder);
-
-            // Update the UI
-            orderNumberCB.getItems().remove(selectedOrder);
-            orderDetailsTextArea.clear();
-
-            if (orderNumberCB.getItems().isEmpty()) {
-                orderDetailsTextArea.setText("No orders remaining.");
-            }
-
-            // Show confirmation alert
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Order Cancelled");
-            alert.setHeaderText(null);
-            alert.setContentText("Order " + selectedOrder + " has been cancelled.");
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
     protected void onExportAllOrdersClick() {
         // Get all orders
         String[] orderIds = OrderManager.getInstance().getArchivedOrderIds();
@@ -101,8 +81,13 @@ public class AllOrdersPanelController implements Initializable {
         // Show the export in the text area
         orderDetailsTextArea.setText(report.toString());
 
-        // In a real app, you could save this to a file, send via email, etc.
-        System.out.println("Orders exported");
+        try (BufferedWriter bw = new BufferedWriter(new PrintWriter("orders.txt"))) {
+            bw.write(report.toString());
+        }
+         catch (IOException e) {
+            e.printStackTrace();
+        }
+        createSuccessPopUp();
     }
 
     private void showOrderDetails(String orderId) {
@@ -119,5 +104,13 @@ public class AllOrdersPanelController implements Initializable {
         } else {
             orderDetailsTextArea.setText("Order details not available for " + orderId);
         }
+    }
+
+    public void createSuccessPopUp(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Orders Successfully Exported");
+        alert.setContentText("Orders are stored in orders.txt");
+        alert.showAndWait();
     }
 }

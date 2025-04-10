@@ -5,10 +5,11 @@ public class Combo extends MenuItem {
     private Beverage beverage;
     private Side side;
 
-    public Combo(Sandwich sandwich, Beverage beverage, Side side) {
+    public Combo(Sandwich sandwich, Beverage beverage, Side side, int quantity) {
         this.sandwich = sandwich;
         this.beverage = beverage;
         this.side = side;
+        this.quantity = quantity;
     }
 
     public Beverage getBeverage() {

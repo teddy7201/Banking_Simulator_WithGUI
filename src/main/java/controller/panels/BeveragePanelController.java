@@ -1,21 +1,16 @@
 package controller.panels;
 
+import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 // Import the model classes
 import model.*;
@@ -44,7 +39,9 @@ public class BeveragePanelController {
     @FXML
     public void initialize() {
         // Initialize combo boxes
-        beverageFlavorCB.getItems().addAll("Cola", "Tea", "Juice");
+        for(Flavor currentflavor : Flavor.values()){
+            beverageFlavorCB.getItems().add(currentflavor.getFlavorName());
+        }
 
         // Set up listeners to update price when options change
         beverageFlavorCB.setOnAction(e -> updatePrice());
@@ -53,7 +50,7 @@ public class BeveragePanelController {
                 ((RadioButton) toggle).setOnAction(e -> updatePrice());
             }
         }
-
+        beverageQuantitySpinner.setOnMousePressed(e -> updatePrice());
         // Initial price update
         updatePrice();
     }
@@ -89,14 +86,19 @@ public class BeveragePanelController {
             }
         }
 
+        price = price * beverageQuantitySpinner.getValue();
         return price;
     }
 
     @FXML
     protected void onAddBeverageToOrderClick() {
+       if(checkEmptyFields()){
+           createPopUp();
+           return;
+       }
         try {
             // Determine flavor type
-            Flavor selectedFlavor;
+            Flavor selectedFlavor = null;
             if (beverageFlavorCB.getValue() != null) {
                 switch (beverageFlavorCB.getValue()) {
                     case "Cola":
@@ -114,8 +116,6 @@ public class BeveragePanelController {
                     default:
                         selectedFlavor = Flavor.COKE;
                 }
-            } else {
-                selectedFlavor = Flavor.COKE;
             }
 
             // Determine size
@@ -135,18 +135,8 @@ public class BeveragePanelController {
             }
 
             // Create the beverage
-            Beverage beverage = new Beverage(selectedSize, selectedFlavor);
-
-            // Set quantity if more than 1
-            if (beverageQuantitySpinner.getValue() > 1) {
-                // Multiple beverages will be added as separate items
-                for (int i = 0; i < beverageQuantitySpinner.getValue(); i++) {
-                    OrderManager.getInstance().addItemToOrder(beverage);
-                }
-            } else {
-                // Add to the order manager
-                OrderManager.getInstance().addItemToOrder(beverage);
-            }
+            Beverage beverage = new Beverage(selectedSize, selectedFlavor, beverageQuantitySpinner.getValue());
+            OrderManager.getInstance().addItemToOrder(beverage);
 
             // Navigate to the current order panel using the main view with sidebar
             FXMLLoader loader = new FXMLLoader(
@@ -154,7 +144,7 @@ public class BeveragePanelController {
             Parent root = loader.load();
 
             // Get the MainController to set the current order panel as visible
-            controller.MainController mainController = loader.getController();
+            MainController mainController = loader.getController();
             mainController.navigateToCurrentOrderPanel();
 
             // Get the scene and set it
@@ -165,5 +155,17 @@ public class BeveragePanelController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkEmptyFields(){
+        return beverageFlavorCB.getValue() == null;
+    }
+
+    public void createPopUp(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Missing Data for creating food item.");
+        alert.setContentText("Please make sure you fill out all fields.");
+        alert.showAndWait();
     }
 }

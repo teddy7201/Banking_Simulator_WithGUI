@@ -9,30 +9,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="allOrdersPane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panels.AllOrdersPanelController">
+<VBox fx:id="allOrdersPane" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="650.0" spacing="10.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.panels.AllOrdersPanelController">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
   <children>
     <Label text="All Placed Orders">
       <font>
-        <Font name="System Bold" size="18.0"/>
+        <Font name="System Bold" size="18.0" />
       </font>
     </Label>
     <HBox alignment="CENTER_LEFT" spacing="10.0">
       <children>
-        <Label text="Select Order Number:"/>
-        <ComboBox fx:id="orderNumberCB" prefWidth="150.0" promptText="Order #"/>
+        <Label text="Select Order Number:" />
+        <ComboBox fx:id="orderNumberCB" prefWidth="150.0" promptText="Order #" />
       </children>
     </HBox>
-    <TextArea fx:id="orderDetailsTextArea" editable="false" prefHeight="250.0" prefWidth="200.0" promptText="Details for the selected order will appear here..." wrapText="true" VBox.vgrow="ALWAYS"/>
+    <TextArea fx:id="orderDetailsTextArea" editable="false" prefHeight="250.0" prefWidth="200.0" promptText="Details for the selected order will appear here..." wrapText="true" VBox.vgrow="ALWAYS" />
     <HBox alignment="CENTER_RIGHT" spacing="20.0">
       <children>
-        <Button mnemonicParsing="false" onAction="#onCancelSelectedOrderClick" text="Cancel Selected Order"/>
-        <Button mnemonicParsing="false" onAction="#onExportAllOrdersClick" text="Export All Orders"/>
+        <Button mnemonicParsing="false" onAction="#onExportAllOrdersClick" text="Export All Orders" />
       </children>
       <VBox.margin>
-        <Insets top="10.0"/>
+        <Insets top="10.0" />
       </VBox.margin>
     </HBox>
   </children>
