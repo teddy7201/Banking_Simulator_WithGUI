@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * This enum class contains the types of flavors available to use for the
+ * beverages.
+ * 
+ * @author Henry Rodriguez
+ */
 public enum Flavor {
     DR_PEPPER("Dr Pepper"),
     APPLE_JUICE("Apple Juice"),
@@ -17,13 +23,22 @@ public enum Flavor {
     SELTZER("Seltzer"),
     DIET_DR_PEPPER("Diet Dr Pepper");
 
-
     private String flavorName;
 
+    /**
+     * Constructor for the Flavor enum
+     * 
+     * @param flavorName The name of the flavor
+     */
     Flavor(String flavorName) {
         this.flavorName = flavorName;
     }
 
+    /**
+     * Get the name of the flavor
+     * 
+     * @return The name of the flavor
+     */
     public String getFlavorName() {
         return flavorName;
     }

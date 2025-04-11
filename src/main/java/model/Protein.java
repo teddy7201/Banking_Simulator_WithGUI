@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * This enum represents the protein types available in the menu.
+ * 
+ * @author Henry Rodriguez
+ */
 public enum Protein {
     ROAST_BEEF("Roast Beef", 10.99),
     SALMON("Salmon", 9.99),
@@ -9,12 +14,32 @@ public enum Protein {
     private String proteinType;
     private double price;
 
-    Protein(String proteinType, double price){
+    /**
+     * Constructor for the Protein enum
+     * 
+     * @param proteinType The type of protein
+     * @param price       The price of the protein
+     */
+    Protein(String proteinType, double price) {
         this.proteinType = proteinType;
         this.price = price;
     }
 
-    public String getProteinType() {return proteinType;}
+    /**
+     * Get the type of protein
+     * 
+     * @return The type of protein
+     */
+    public String getProteinType() {
+        return proteinType;
+    }
 
-    public double getPrice() {return price;}
+    /**
+     * Get the price of the protein
+     * 
+     * @return The price of the protein
+     */
+    public double getPrice() {
+        return price;
+    }
 }

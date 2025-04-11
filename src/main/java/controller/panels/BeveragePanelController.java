@@ -15,6 +15,11 @@ import java.io.IOException;
 // Import the model classes
 import model.*;
 
+/**
+ * This class is the controller for the BeveragePanel.
+ * 
+ * @author Zeyu weng
+ */
 public class BeveragePanelController {
     @FXML
     private ComboBox<String> beverageFlavorCB;
@@ -36,10 +41,13 @@ public class BeveragePanelController {
     private static final double MEDIUM_PRICE = 2.49;
     private static final double LARGE_PRICE = 2.99;
 
+    /**
+     * Initializes the BeveragePanel
+     */
     @FXML
     public void initialize() {
         // Initialize combo boxes
-        for(Flavor currentflavor : Flavor.values()){
+        for (Flavor currentflavor : Flavor.values()) {
             beverageFlavorCB.getItems().add(currentflavor.getFlavorName());
         }
 
@@ -90,9 +98,12 @@ public class BeveragePanelController {
         return price;
     }
 
+    /**
+     * Adds a beverage to the order
+     */
     @FXML
     protected void onAddBeverageToOrderClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -157,11 +168,19 @@ public class BeveragePanelController {
         }
     }
 
-    public boolean checkEmptyFields(){
+    /**
+     * Checks if the fields are empty
+     * 
+     * @return True if the fields are empty, false otherwise
+     */
+    public boolean checkEmptyFields() {
         return beverageFlavorCB.getValue() == null;
     }
 
-    public void createPopUp(){
+    /**
+     * Creates a pop-up
+     */
+    public void createPopUp() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Missing Data for creating food item.");

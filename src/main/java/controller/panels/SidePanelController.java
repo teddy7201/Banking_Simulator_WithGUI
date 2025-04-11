@@ -8,12 +8,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Node;
-
 import java.io.IOException;
-
-// Import the model classes
 import model.*;
 
+/**
+ * This class is the controller for the SidePanel.
+ * 
+ * @author Zeyu weng
+ */
 public class SidePanelController {
     @FXML
     private ComboBox<String> sideTypeCB;
@@ -30,15 +32,17 @@ public class SidePanelController {
     @FXML
     private Spinner<Integer> sideQuantitySpinner;
 
-
     // Size upcharges
     private static final double MEDIUM_UPCHARGE = 0.50;
     private static final double LARGE_UPCHARGE = 1.00;
 
+    /**
+     * Initializes the SidePanel
+     */
     @FXML
     public void initialize() {
         // Initialize combo boxes
-        for (SideType currentSide: SideType.values()){
+        for (SideType currentSide : SideType.values()) {
             sideTypeCB.getItems().add(currentSide.getSideName());
         }
 
@@ -145,9 +149,12 @@ public class SidePanelController {
         return description.toString();
     }
 
+    /**
+     * Adds a side to the order
+     */
     @FXML
     protected void onAddSideToOrderClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -213,11 +220,20 @@ public class SidePanelController {
             e.printStackTrace();
         }
     }
-    public boolean checkEmptyFields(){
+
+    /**
+     * Checks if the fields are empty
+     * 
+     * @return True if the fields are empty, false otherwise
+     */
+    public boolean checkEmptyFields() {
         return sideTypeCB.getValue() == null;
     }
 
-    public void createPopUp(){
+    /**
+     * Creates a pop-up
+     */
+    public void createPopUp() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Missing Data for creating food item.");

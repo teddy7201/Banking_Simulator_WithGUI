@@ -17,6 +17,11 @@ import java.util.Objects;
 // Import the model classes
 import model.*;
 
+/**
+ * This class is the controller for the SandwichPanel.
+ * 
+ * @author Zeyu weng
+ */
 public class SandwichPanelController {
     @FXML
     private ComboBox<String> sandwichBreadOptionCB;
@@ -51,11 +56,13 @@ public class SandwichPanelController {
     @FXML
     private CheckBox cheeseCB;
 
-
+    /**
+     * Initializes the SandwichPanel
+     */
     @FXML
     public void initialize() {
         // Initialize combo boxes
-        for(Bread currentBread : Bread.values()){
+        for (Bread currentBread : Bread.values()) {
             sandwichBreadOptionCB.getItems().add(currentBread.getBreadType());
         }
         sandwichProteinCB.getItems().addAll("Roast Beef", "Salmon", "Chicken");
@@ -78,19 +85,15 @@ public class SandwichPanelController {
      */
     private void updatePrice() {
         double price = 0;
-        if(Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())){
+        if (Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())) {
             price += Protein.CHICKEN.getPrice();
-        }
-        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())){
+        } else if (Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())) {
             price += Protein.ROAST_BEEF.getPrice();
-        }
-        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())){
+        } else if (Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())) {
             price += Protein.SALMON.getPrice();
-        }
-        else{
+        } else {
             price = 0;
         }
-
 
         // Add costs for selected add-ons
         if (lettuceCB.isSelected())
@@ -116,19 +119,15 @@ public class SandwichPanelController {
      */
     private double calculateSandwichPrice() {
         double price = 0;
-        if(Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())){
+        if (Objects.equals(sandwichProteinCB.getValue(), Protein.CHICKEN.getProteinType())) {
             price += Protein.CHICKEN.getPrice();
-        }
-        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())){
+        } else if (Objects.equals(sandwichProteinCB.getValue(), Protein.ROAST_BEEF.getProteinType())) {
             price += Protein.ROAST_BEEF.getPrice();
-        }
-        else if(Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())){
+        } else if (Objects.equals(sandwichProteinCB.getValue(), Protein.SALMON.getProteinType())) {
             price += Protein.SALMON.getPrice();
-        }
-        else{
+        } else {
             price = 0;
         }
-
 
         // Add costs for selected add-ons
         if (lettuceCB.isSelected())
@@ -196,9 +195,12 @@ public class SandwichPanelController {
         return description.toString();
     }
 
+    /**
+     * Adds a sandwich to the order
+     */
     @FXML
     protected void onAddSandwichToOrderClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -219,7 +221,7 @@ public class SandwichPanelController {
                     case "Sourdough":
                         selectedBread = Bread.SOURDOUGH;
                         break;
-                    case  "Bagel":
+                    case "Bagel":
                         selectedBread = Bread.BAGEL;
                     default:
                         selectedBread = Bread.BRIOCHE;
@@ -262,7 +264,8 @@ public class SandwichPanelController {
                 addons.add(Addons.CHEESE);
 
             // Create the sandwich
-            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons, sandwichQuantitySpinner.getValue());
+            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons,
+                    sandwichQuantitySpinner.getValue());
 
             // Add to the order manager
             OrderManager.getInstance().addItemToOrder(sandwich);
@@ -288,7 +291,7 @@ public class SandwichPanelController {
 
     @FXML
     protected void onMakeComboClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -314,7 +317,8 @@ public class SandwichPanelController {
             if (cheeseCB.isSelected())
                 addons.add(Addons.CHEESE);
 
-            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons, sandwichQuantitySpinner.getValue());
+            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons,
+                    sandwichQuantitySpinner.getValue());
 
             // Load the combo panel with sidebar navigation
             FXMLLoader loader = new FXMLLoader(
@@ -336,11 +340,19 @@ public class SandwichPanelController {
         }
     }
 
-    public boolean checkEmptyFields(){
+    /**
+     * Checks if the fields are empty
+     * 
+     * @return
+     */
+    public boolean checkEmptyFields() {
         return sandwichBreadOptionCB.getValue() == null || sandwichProteinCB.getValue() == null;
     }
 
-    public void createPopUp(){
+    /**
+     * Error pop-ups
+     */
+    public void createPopUp() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Missing Data for creating food item.");

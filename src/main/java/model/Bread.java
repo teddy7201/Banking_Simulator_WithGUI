@@ -1,7 +1,9 @@
 package model;
 
 /**
- * This enum class contains the types of bread available to use for the sandwiches and burgers.
+ * This enum class contains the types of bread available to use for the
+ * sandwiches and burgers.
+ * 
  * @author Henry Rodriguez
  */
 public enum Bread {
@@ -11,10 +13,23 @@ public enum Bread {
     BAGEL("Bagel"),
     SOURDOUGH("Sourdough");
 
-
     private String breadType;
 
-    Bread(String breadType){this.breadType = breadType;}
+    /**
+     * Constructor for the Bread enum
+     * 
+     * @param breadType The type of bread
+     */
+    Bread(String breadType) {
+        this.breadType = breadType;
+    }
 
-    public String getBreadType() {return breadType;}
+    /**
+     * Get the type of bread
+     *
+     * @return The type of bread
+     */
+    public String getBreadType() {
+        return breadType;
+    }
 }

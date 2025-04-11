@@ -17,6 +17,11 @@ import java.util.ArrayList;
 // Import the model classes
 import model.*;
 
+/**
+ * This class is the controller for the BurgerPanel.
+ * 
+ * @author Zeyu weng
+ */
 public class BurgerPanelController {
     @FXML
     private ComboBox<String> burgerBreadCB;
@@ -59,7 +64,9 @@ public class BurgerPanelController {
 
     private static final double DOUBLE_PATTY_UPCHARGE = 2.50;
 
-
+    /**
+     * Initializes the BurgerPanel
+     */
     @FXML
     public void initialize() {
         // Initialize combo boxes
@@ -190,7 +197,7 @@ public class BurgerPanelController {
 
     @FXML
     protected void onAddBurgerToOrderClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -232,7 +239,8 @@ public class BurgerPanelController {
             boolean isDoublePatty = doublePattyRB.isSelected();
 
             // Create the burger
-            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty, burgerQuantitySpinner.getValue());
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty,
+                    burgerQuantitySpinner.getValue());
 
             // Set quantity if more than 1
             if (burgerQuantitySpinner.getValue() > 1) {
@@ -264,9 +272,12 @@ public class BurgerPanelController {
         }
     }
 
+    /**
+     * Makes a combo
+     */
     @FXML
     protected void onMakeComboClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -312,7 +323,8 @@ public class BurgerPanelController {
             boolean isDoublePatty = doublePattyRB.isSelected();
 
             // Create the burger
-            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty, burgerQuantitySpinner.getValue());
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty,
+                    burgerQuantitySpinner.getValue());
 
             // Load the combo panel and get its controller
             FXMLLoader loader = new FXMLLoader(
@@ -334,11 +346,19 @@ public class BurgerPanelController {
         }
     }
 
-    public boolean checkEmptyFields(){
+    /**
+     * Checks if the fields are empty
+     * 
+     * @return True if the fields are empty, false otherwise
+     */
+    public boolean checkEmptyFields() {
         return burgerBreadCB.getValue() == null;
     }
 
-    public void createPopUp(){
+    /**
+     * Creates a pop-up
+     */
+    public void createPopUp() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Missing Data for creating food item.");

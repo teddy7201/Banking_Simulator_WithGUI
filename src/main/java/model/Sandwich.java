@@ -78,6 +78,12 @@ public class Sandwich extends MenuItem {
         return price;
     }
 
+    /**
+     * Overriden toString() method that returns a string representation of the
+     * sandwich.
+     *
+     * @return A string representation of the sandwich.
+     */
     @Override
     public String toString() {
         if (addOns.isEmpty()) {

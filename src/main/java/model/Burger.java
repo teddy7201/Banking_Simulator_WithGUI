@@ -2,11 +2,17 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a burger item in the menu.
+ * It extends the Sandwich class and implements the price() method.
+ * 
+ * @author Henry Rodriguez
+ */
 public class Burger extends Sandwich {
     private boolean doublePatty;
 
     /**
-     * Constructor for Burger with 4 parameters.
+     * Constructor for Burger with 5 parameters.
      *
      * @param bread       A Bread object representing the type of bread of the
      *                    burger.
@@ -16,6 +22,7 @@ public class Burger extends Sandwich {
      *                    the burger.
      * @param doublePatty A boolean indicating if the burger will have a double
      *                    patty or not.
+     * @param quantity    The quantity of the burger.
      */
     public Burger(Bread bread, Protein protein, ArrayList<Addons> addOns, boolean doublePatty, int quantity) {
         super(bread, protein, addOns, quantity);
@@ -56,6 +63,12 @@ public class Burger extends Sandwich {
         return price;
     }
 
+    /**
+     * Overriden toString() method that returns a string representation of the
+     * burger.
+     *
+     * @return A string representation of the burger.
+     */
     @Override
     public String toString() {
         String pattySD;
@@ -74,6 +87,7 @@ public class Burger extends Sandwich {
             addonNames.append(addon.getAddonType() + " ");
         }
 
-        return String.format("Burger\n Bread: %s Protein: %s Addons: %s Quantity: %d", bread.getBreadType(), pattySD, addonNames, quantity);
+        return String.format("Burger\n Bread: %s Protein: %s Addons: %s Quantity: %d", bread.getBreadType(), pattySD,
+                addonNames, quantity);
     }
 }

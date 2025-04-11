@@ -1,10 +1,24 @@
 package model;
 
+/**
+ * Represents a combo item in the menu.
+ * It extends the MenuItem class and implements the price() method.
+ * 
+ * @author Henry Rodriguez
+ */
 public class Combo extends MenuItem {
     private Sandwich sandwich;
     private Beverage beverage;
     private Side side;
 
+    /**
+     * Constructor for the Combo class
+     * 
+     * @param sandwich The sandwich in the combo
+     * @param beverage The beverage in the combo
+     * @param side     The side in the combo
+     * @param quantity The quantity of the combo
+     */
     public Combo(Sandwich sandwich, Beverage beverage, Side side, int quantity) {
         this.sandwich = sandwich;
         this.beverage = beverage;
@@ -12,18 +26,38 @@ public class Combo extends MenuItem {
         this.quantity = quantity;
     }
 
+    /**
+     * Get the beverage in the combo
+     * 
+     * @return The beverage in the combo
+     */
     public Beverage getBeverage() {
         return beverage;
     }
 
+    /**
+     * Get the sandwich in the combo
+     * 
+     * @return The sandwich in the combo
+     */
     public Sandwich getSandwich() {
         return sandwich;
     }
 
+    /**
+     * Get the side in the combo
+     * 
+     * @return The side in the combo
+     */
     public Side getSide() {
         return side;
     }
 
+    /**
+     * Calculate the price of the combo
+     * 
+     * @return The price of the combo
+     */
     @Override
     public double price() {
         double price = 0;
@@ -31,6 +65,11 @@ public class Combo extends MenuItem {
         return price;
     }
 
+    /**
+     * Get the string representation of the combo
+     * 
+     * @return The string representation of the combo
+     */
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder();

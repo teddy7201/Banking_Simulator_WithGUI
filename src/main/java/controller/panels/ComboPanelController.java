@@ -114,7 +114,7 @@ public class ComboPanelController {
      */
     @FXML
     private void onAddToOrderClick() {
-        if(checkEmptyFields()){
+        if (checkEmptyFields()) {
             createPopUp();
             return;
         }
@@ -251,11 +251,19 @@ public class ComboPanelController {
         }
     }
 
-    public boolean checkEmptyFields(){
+    /**
+     * Checks if the fields are empty
+     * 
+     * @return True if the fields are empty, false otherwise
+     */
+    public boolean checkEmptyFields() {
         return comboSideTypeCB.getValue() == null || comboDrinkTypeCB.getValue() == null;
     }
 
-    public void createPopUp(){
+    /**
+     * Creates a pop-up
+     */
+    public void createPopUp() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Missing Data for creating food item.");

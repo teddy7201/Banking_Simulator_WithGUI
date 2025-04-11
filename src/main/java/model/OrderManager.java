@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Singleton class to manage the current order across different controllers.
+ * This class manages the orders in the menu.
+ * 
+ * @author Zeyu weng
  */
 public class OrderManager {
     private static OrderManager instance = null;
@@ -15,6 +17,9 @@ public class OrderManager {
     private Map<String, ArchivedOrder> archivedOrders;
     private int nextOrderNumber = 1;
 
+    /**
+     * Constructor for the OrderManager class
+     */
     private OrderManager() {
         // Initialize with an empty order
         currentOrder = new Order();
@@ -156,6 +161,11 @@ public class OrderManager {
         return subtotal * 0.06625; // 6.625% tax rate
     }
 
+    /**
+     * This class represents an archived order in the menu.
+     * 
+     * @author Zeyu weng
+     */
     public static class ArchivedOrder {
         private String orderId;
         private String timestamp;
@@ -164,6 +174,15 @@ public class OrderManager {
         private double tax;
         private double total;
 
+        /**
+         * 
+         * @param orderId
+         * @param timestamp
+         * @param items
+         * @param subtotal
+         * @param tax
+         * @param total
+         */
         public ArchivedOrder(String orderId, String timestamp, ArrayList<MenuItem> items,
                 double subtotal, double tax, double total) {
             this.orderId = orderId;
@@ -174,30 +193,65 @@ public class OrderManager {
             this.total = total;
         }
 
+        /**
+         * Get the order ID
+         * 
+         * @return The order ID
+         */
         public String getOrderId() {
             return orderId;
         }
 
+        /**
+         * Get the timestamp
+         * 
+         * @return The timestamp
+         */
         public String getTimestamp() {
             return timestamp;
         }
 
+        /**
+         * Get the items
+         * 
+         * @return The items
+         */
         public ArrayList<MenuItem> getItems() {
             return items;
         }
 
+        /**
+         * Get the subtotal
+         * 
+         * @return The subtotal
+         */
         public double getSubtotal() {
             return subtotal;
         }
 
+        /**
+         * Get the tax
+         * 
+         * @return The tax
+         */
         public double getTax() {
             return tax;
         }
 
+        /**
+         * Get the total
+         * 
+         * @return The total
+         */
         public double getTotal() {
             return total;
         }
 
+        /**
+         * Get the formatted details
+         * 
+         * @return The formatted details
+         */
         public String getFormattedDetails() {
             StringBuilder details = new StringBuilder();
             details.append(orderId).append("\n");

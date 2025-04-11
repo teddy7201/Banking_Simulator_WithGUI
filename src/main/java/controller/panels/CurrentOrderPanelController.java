@@ -14,6 +14,11 @@ import model.OrderManager;
 
 import java.io.IOException;
 
+/**
+ * This class is the controller for the CurrentOrderPanel.
+ * 
+ * @author Zeyu weng
+ */
 public class CurrentOrderPanelController {
     @FXML
     private ListView<String> orderItemsListView;
@@ -56,6 +61,9 @@ public class CurrentOrderPanelController {
         updatePriceLabels();
     }
 
+    /**
+     * Removes a selected item from the order
+     */
     @FXML
     protected void onRemoveSelectedItemClick() {
         int selectedIndex = orderItemsListView.getSelectionModel().getSelectedIndex();
@@ -80,6 +88,9 @@ public class CurrentOrderPanelController {
         refreshOrderView();
     }
 
+    /**
+     * Places the order and gets the order ID
+     */
     @FXML
     protected void onPlaceOrderClick() {
         // Place the order and get the order ID
@@ -111,6 +122,9 @@ public class CurrentOrderPanelController {
         }
     }
 
+    /**
+     * Updates the price labels
+     */
     private void updatePriceLabels() {
         // Calculate subtotal from the current order
         Order currentOrder = OrderManager.getInstance().getCurrentOrder();

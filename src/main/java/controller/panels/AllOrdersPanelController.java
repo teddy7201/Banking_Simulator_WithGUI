@@ -9,12 +9,16 @@ import javafx.scene.control.TextArea;
 import model.OrderManager;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This class is the controller for the AllOrdersPanel.
+ * 
+ * @author Zeyu weng
+ */
 public class AllOrdersPanelController implements Initializable {
     @FXML
     private ComboBox<String> orderNumberCB;
@@ -22,6 +26,12 @@ public class AllOrdersPanelController implements Initializable {
     @FXML
     private TextArea orderDetailsTextArea;
 
+    /**
+     * Initializes the AllOrdersPanel
+     * 
+     * @param location  The location of the AllOrdersPanel
+     * @param resources The resources of the AllOrdersPanel
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         refreshOrderList();
@@ -48,6 +58,9 @@ public class AllOrdersPanelController implements Initializable {
         }
     }
 
+    /**
+     * Exports all orders
+     */
     @FXML
     protected void onExportAllOrdersClick() {
         // Get all orders
@@ -83,13 +96,17 @@ public class AllOrdersPanelController implements Initializable {
 
         try (BufferedWriter bw = new BufferedWriter(new PrintWriter("orders.txt"))) {
             bw.write(report.toString());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         createSuccessPopUp();
     }
 
+    /**
+     * Shows the details of an order
+     * 
+     * @param orderId The ID of the order
+     */
     private void showOrderDetails(String orderId) {
         if (orderId == null) {
             return;
@@ -106,7 +123,10 @@ public class AllOrdersPanelController implements Initializable {
         }
     }
 
-    public void createSuccessPopUp(){
+    /**
+     * Creates a success pop-up
+     */
+    public void createSuccessPopUp() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Orders Successfully Exported");
