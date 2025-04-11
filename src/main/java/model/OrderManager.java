@@ -176,12 +176,12 @@ public class OrderManager {
 
         /**
          * 
-         * @param orderId
-         * @param timestamp
-         * @param items
-         * @param subtotal
-         * @param tax
-         * @param total
+         * @param orderId A string representing the Id of the order being added.
+         * @param timestamp A String representing when the order was added.
+         * @param items An Arraylist of MenuItems that contain the items of the order.
+         * @param subtotal A double representing the subtotal of the order.
+         * @param tax A double representing the tax of the order.
+         * @param total A double representing the total of the order.
          */
         public ArchivedOrder(String orderId, String timestamp, ArrayList<MenuItem> items,
                 double subtotal, double tax, double total) {

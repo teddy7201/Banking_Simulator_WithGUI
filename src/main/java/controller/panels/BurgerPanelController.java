@@ -14,12 +14,11 @@ import javafx.scene.Node;
 import java.io.IOException;
 import java.util.ArrayList;
 
-// Import the model classes
 import model.*;
 
 /**
  * This class is the controller for the BurgerPanel.
- * 
+ *
  * @author Zeyu weng
  */
 public class BurgerPanelController {
@@ -158,12 +157,8 @@ public class BurgerPanelController {
             description.append(burgerBreadCB.getValue()).append(" ");
         }
 
-        // Add patty type
-        if (doublePattyRB.isSelected()) {
-            description.append("Double ");
-        } else {
-            description.append("Single ");
-        }
+        if (doublePattyRB.isSelected()) {description.append("Double ");}
+        else {description.append("Single ");}
 
         description.append("Burger");
 
@@ -183,26 +178,22 @@ public class BurgerPanelController {
             if (cheeseCB.isSelected())
                 description.append("cheese, ");
 
-            // Remove trailing comma and space
             description.setLength(description.length() - 2);
         }
-
         // Add quantity if more than 1
         if (burgerQuantitySpinner.getValue() > 1) {
             description.append(" (").append(burgerQuantitySpinner.getValue()).append(")");
         }
-
         return description.toString();
     }
 
+    /**
+     * Event handler to add burger to order.
+     */
     @FXML
     protected void onAddBurgerToOrderClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
+        if (checkEmptyFields()) {createPopUp();return;}
         try {
-            // Determine bread type
             Bread selectedBread = null;
             if (burgerBreadCB.getValue() != null) {
                 switch (burgerBreadCB.getValue()) {
@@ -219,57 +210,31 @@ public class BurgerPanelController {
                         selectedBread = Bread.BRIOCHE;
                 }
             }
-            // Protein is always beef patty for burgers
             Protein selectedProtein = Protein.BEEF_PATTY;
-
-            // Create list of addons
             ArrayList<Addons> addons = new ArrayList<>();
-            if (lettuceCB.isSelected())
-                addons.add(Addons.LETTUCE);
-            if (tomatoesCB.isSelected())
-                addons.add(Addons.TOMATOES);
-            if (onionsCB.isSelected())
-                addons.add(Addons.ONIONS);
-            if (avocadoCB.isSelected())
-                addons.add(Addons.AVOCADO);
-            if (cheeseCB.isSelected())
-                addons.add(Addons.CHEESE);
+            if (lettuceCB.isSelected()){addons.add(Addons.LETTUCE);}
+            if (tomatoesCB.isSelected()){addons.add(Addons.TOMATOES);}
+            if (onionsCB.isSelected()){addons.add(Addons.ONIONS);}
+            if (avocadoCB.isSelected()){addons.add(Addons.AVOCADO);}
+            if (cheeseCB.isSelected()) {addons.add(Addons.CHEESE);}
 
-            // Determine if double patty is selected
             boolean isDoublePatty = doublePattyRB.isSelected();
 
-            // Create the burger
-            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty,
-                    burgerQuantitySpinner.getValue());
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty, burgerQuantitySpinner.getValue());
+            OrderManager.getInstance().addItemToOrder(burger);
 
-            // Set quantity if more than 1
-            if (burgerQuantitySpinner.getValue() > 1) {
-                // Multiple burgers will be added as separate items
-                for (int i = 0; i < burgerQuantitySpinner.getValue(); i++) {
-                    OrderManager.getInstance().addItemToOrder(burger);
-                }
-            } else {
-                // Add to the order manager
-                OrderManager.getInstance().addItemToOrder(burger);
-            }
-
-            // Navigate to the current order panel using the main view with sidebar
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
             Parent root = loader.load();
 
-            // Get the MainController to set the current order panel as visible
             MainController mainController = loader.getController();
             mainController.navigateToCurrentOrderPanel();
 
-            // Get the scene and set it
             Stage stage = (Stage) ((Node) burgerPane).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     /**
@@ -277,13 +242,8 @@ public class BurgerPanelController {
      */
     @FXML
     protected void onMakeComboClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
-
+        if (checkEmptyFields()) {createPopUp();return;}
         try {
-            // Create the burger first
             Bread selectedBread;
             if (burgerBreadCB.getValue() != null) {
                 switch (burgerBreadCB.getValue()) {
@@ -298,57 +258,33 @@ public class BurgerPanelController {
                         break;
                     default:
                         selectedBread = Bread.BRIOCHE;
-                }
-            } else {
-                selectedBread = Bread.BRIOCHE;
-            }
+                }} else {selectedBread = Bread.BRIOCHE;}
 
-            // Protein is always beef patty for burgers
             Protein selectedProtein = Protein.BEEF_PATTY;
-
-            // Create list of addons
             ArrayList<Addons> addons = new ArrayList<>();
-            if (lettuceCB.isSelected())
-                addons.add(Addons.LETTUCE);
-            if (tomatoesCB.isSelected())
-                addons.add(Addons.TOMATOES);
-            if (onionsCB.isSelected())
-                addons.add(Addons.ONIONS);
-            if (avocadoCB.isSelected())
-                addons.add(Addons.AVOCADO);
-            if (cheeseCB.isSelected())
-                addons.add(Addons.CHEESE);
+            if (lettuceCB.isSelected()){addons.add(Addons.LETTUCE);}
+            if (tomatoesCB.isSelected()){addons.add(Addons.TOMATOES);}
+            if (onionsCB.isSelected()){addons.add(Addons.ONIONS);}
+            if (avocadoCB.isSelected()){addons.add(Addons.AVOCADO);}
+            if (cheeseCB.isSelected()) {addons.add(Addons.CHEESE);}
 
-            // Determine if double patty is selected
             boolean isDoublePatty = doublePattyRB.isSelected();
-
-            // Create the burger
-            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty,
-                    burgerQuantitySpinner.getValue());
-
-            // Load the combo panel and get its controller
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/softwaremethproject4/panels/combo-panel.fxml"));
+            Burger burger = new Burger(selectedBread, selectedProtein, addons, isDoublePatty,  burgerQuantitySpinner.getValue());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/softwaremethproject4/panels/combo-panel.fxml"));
             Parent root = loader.load();
-
-            // Initialize the combo panel with burger details
             ComboPanelController comboController = loader.getController();
             double basePrice = calculateBurgerPrice();
             comboController.initializeWithItem("Burger", burger, basePrice, createBurgerDescription());
-
-            // Switch to the combo scene
             Stage stage = (Stage) ((Node) burgerPane).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     /**
      * Checks if the fields are empty
-     * 
+     *
      * @return True if the fields are empty, false otherwise
      */
     public boolean checkEmptyFields() {

@@ -35,9 +35,11 @@ public class CurrentOrderPanelController {
     @FXML
     private Label orderNumberLabel;
 
+    /**
+     * Method used to initialize the view
+     */
     @FXML
     public void initialize() {
-        // Load order items from OrderManager
         refreshOrderView();
     }
 
@@ -76,6 +78,9 @@ public class CurrentOrderPanelController {
         }
     }
 
+    /**
+     * Event handler that cancels/clears the current order.
+     */
     @FXML
     protected void onClearAllItemsClick() {
         // Start a new order in OrderManager

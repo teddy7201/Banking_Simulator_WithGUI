@@ -1,10 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-import javafx.scene.Parent;
-import controller.panels.SandwichPanelController;
 
 /**
  * This class is the controller for the MainController.
@@ -30,8 +27,6 @@ public class MainController {
 
     @FXML
     private VBox allOrdersPanel;
-
-    private SandwichPanelController sandwichController;
 
     /**
      * Initializes the MainController

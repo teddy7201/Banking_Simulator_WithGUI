@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * This class is the controller for the AllOrdersPanel.
- * 
+ *
  * @author Zeyu weng
  */
 public class AllOrdersPanelController implements Initializable {
@@ -28,7 +28,7 @@ public class AllOrdersPanelController implements Initializable {
 
     /**
      * Initializes the AllOrdersPanel
-     * 
+     *
      * @param location  The location of the AllOrdersPanel
      * @param resources The resources of the AllOrdersPanel
      */
@@ -75,11 +75,8 @@ public class AllOrdersPanelController implements Initializable {
             alert.showAndWait();
             return;
         }
-
-        // Create a comprehensive report of all orders
         StringBuilder report = new StringBuilder();
         report.append("===== ORDER EXPORT =====\n\n");
-
         double totalRevenue = 0.0;
 
         for (String orderId : orderIds) {
@@ -104,7 +101,7 @@ public class AllOrdersPanelController implements Initializable {
 
     /**
      * Shows the details of an order
-     * 
+     *
      * @param orderId The ID of the order
      */
     private void showOrderDetails(String orderId) {

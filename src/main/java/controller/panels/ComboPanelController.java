@@ -114,142 +114,47 @@ public class ComboPanelController {
      */
     @FXML
     private void onAddToOrderClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
-        try {
-            Flavor selectedFlavor;
-            if (comboDrinkTypeCB.getValue() != null) {
+        if (checkEmptyFields()) {createPopUp();return;}
+        try {Flavor selectedFlavor;
                 switch (comboDrinkTypeCB.getValue()) {
-                    case "Cola":
-                        selectedFlavor = Flavor.COKE;
-                        break;
-                    case "Tea":
-                        selectedFlavor = Flavor.ICED_TEA;
-                        break;
-                    case "Juice":
-                        selectedFlavor = Flavor.APPLE_JUICE;
-                        break;
+                    case "Coke":
+                        selectedFlavor = Flavor.COKE;break;
+                    case "Iced Tea":
+                        selectedFlavor = Flavor.ICED_TEA;break;
+                    case "Apple Juice":
+                        selectedFlavor = Flavor.APPLE_JUICE;break;
                     case "Water":
-                        selectedFlavor = Flavor.WATER;
-                        break;
+                        selectedFlavor = Flavor.WATER;break;
                     default:
                         selectedFlavor = Flavor.COKE;
                 }
-            } else {
-                selectedFlavor = Flavor.COKE;
-            }
-
-            // MEDIUM for combo
             Size drinkSize = Size.MEDIUM;
             if (drinkSizeGroup != null) {
                 for (Toggle toggle : drinkSizeGroup.getToggles()) {
-                    if (toggle instanceof RadioButton && ((RadioButton) toggle).isSelected()) {
-                        RadioButton rb = (RadioButton) toggle;
-                        if (rb.getText().contains("Small")) {
-                            drinkSize = Size.SMALL;
-                        } else if (rb.getText().contains("Large")) {
-                            drinkSize = Size.LARGE;
-                        }
-                        break;
-                    }
-                }
-            }
-
-            Beverage beverage = new Beverage(drinkSize, selectedFlavor, 1);
-
-            // Create the side based on selection
-            SideType selectedSideType;
+                    if (toggle instanceof RadioButton && ((RadioButton) toggle).isSelected()) {RadioButton rb = (RadioButton) toggle;if (rb.getText().contains("Small")) {drinkSize = Size.SMALL;} else if (rb.getText().contains("Large")) {drinkSize = Size.LARGE;}break;}}}
+            Beverage beverage = new Beverage(drinkSize, selectedFlavor, 1);SideType selectedSideType;
             if (comboSideTypeCB.getValue() != null) {
                 switch (comboSideTypeCB.getValue()) {
                     case "Chips":
-                        selectedSideType = SideType.CHIPS;
-                        break;
+                        selectedSideType = SideType.CHIPS;break;
                     case "French Fries":
-                    case "Fries":
-                        selectedSideType = SideType.FRIES;
-                        break;
-                    case "Apple":
+                        selectedSideType = SideType.FRIES;break;
                     case "Apple Slices":
-                        selectedSideType = SideType.APPLE_SLICES;
-                        break;
+                        selectedSideType = SideType.APPLE_SLICES;break;
                     default:
                         selectedSideType = SideType.CHIPS;
-                }
-            } else {
-                selectedSideType = SideType.CHIPS;
-            }
-
-            // default to MEDIUM for combo
+                }} else {selectedSideType = SideType.CHIPS;}
             Size sideSize = Size.MEDIUM;
-            if (sideSizeGroup != null) {
-                for (Toggle toggle : sideSizeGroup.getToggles()) {
-                    if (toggle instanceof RadioButton && ((RadioButton) toggle).isSelected()) {
-                        RadioButton rb = (RadioButton) toggle;
-                        if (rb.getText().contains("Small")) {
-                            sideSize = Size.SMALL;
-                        } else if (rb.getText().contains("Large")) {
-                            sideSize = Size.LARGE;
-                        }
-                        break;
-                    }
-                }
-            }
+            if (sideSizeGroup != null) {for (Toggle toggle : sideSizeGroup.getToggles()) {if (toggle instanceof RadioButton && ((RadioButton) toggle).isSelected()) {RadioButton rb = (RadioButton) toggle;if (rb.getText().contains("Small")) {sideSize = Size.SMALL;} else if (rb.getText().contains("Large")) {sideSize = Size.LARGE;}break;}}}
+            Side side = new Side(sideSize, selectedSideType, 1);Combo combo;
+            if (originalItem instanceof Sandwich) {combo = new Combo((Sandwich) originalItem, beverage, side, ((Sandwich) originalItem).getQuantity());}
+            else if (originalItem instanceof Burger) {Sandwich burger = (Sandwich) originalItem; combo = new Combo(burger, beverage, side, burger.getQuantity());}
+            else {throw new IllegalStateException("Unknown original item type in combo: " + itemType);}
+            OrderManager.getInstance().addItemToOrder(combo);FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
+            Parent root = loader.load();controller.MainController mainController = loader.getController();mainController.navigateToCurrentOrderPanel();
+            Stage stage = (Stage) ((Node) comboPane).getScene().getWindow();Scene scene = new Scene(root);stage.setScene(scene);stage.show();
+        } catch (IOException e) {e.printStackTrace();}}
 
-            Side side = new Side(sideSize, selectedSideType, 1);
-
-            // Create combo with original item, beverage, and side
-            Combo combo;
-            if (originalItem instanceof Sandwich) {
-                combo = new Combo((Sandwich) originalItem, beverage, side, ((Sandwich) originalItem).getQuantity());
-            } else if (originalItem instanceof Burger) {
-                // Need to wrap Burger in a Combo
-                Sandwich burger = (Sandwich) originalItem; // Burger extends Sandwich
-                combo = new Combo(burger, beverage, side, burger.getQuantity());
-            } else {
-                // Fallback case - should not happen if panels are working properly
-                throw new IllegalStateException("Unknown original item type in combo: " + itemType);
-            }
-
-            // Add to order manager
-            OrderManager.getInstance().addItemToOrder(combo);
-
-            // Navigate to the current order panel using the main view with sidebar
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
-            Parent root = loader.load();
-
-            // Get the MainController to set the current order panel as visible
-            controller.MainController mainController = loader.getController();
-            mainController.navigateToCurrentOrderPanel();
-
-            // Get the scene and set it
-            Stage stage = (Stage) ((Node) comboPane).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Handle back button click - return to the original item configuration screen
-     */
-    @FXML
-    private void onBackToItemClick() {
-        try {
-            Parent root = FXMLLoader.load(getClass()
-                    .getResource("/com/softwaremethproject4/panels/" + itemType.toLowerCase() + "-panel.fxml"));
-            Stage stage = (Stage) ((Node) comboPane).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Checks if the fields are empty

@@ -23,6 +23,10 @@ public class Side extends MenuItem {
         this.quantity = quantity;
     }
 
+    /**
+     * Overridden price method used to calculate the price of the side.
+     * @return A double representing the price of the side.
+     */
     public double price() {
         double price = 0;
 

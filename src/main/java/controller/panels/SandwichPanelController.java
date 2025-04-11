@@ -167,7 +167,6 @@ public class SandwichPanelController {
             description.append("Custom sandwich");
         }
 
-        // Add toppings
         if (lettuceCB.isSelected() || tomatoesCB.isSelected() || onionsCB.isSelected()
                 || avocadoCB.isSelected() || cheeseCB.isSelected()) {
             description.append(" with ");
@@ -182,16 +181,11 @@ public class SandwichPanelController {
                 description.append("avocado, ");
             if (cheeseCB.isSelected())
                 description.append("cheese, ");
-
-            // Remove trailing comma and space
             description.setLength(description.length() - 2);
         }
-
-        // Add quantity if more than 1
         if (sandwichQuantitySpinner.getValue() > 1) {
             description.append(" (").append(sandwichQuantitySpinner.getValue()).append(")");
         }
-
         return description.toString();
     }
 
@@ -200,101 +194,52 @@ public class SandwichPanelController {
      */
     @FXML
     protected void onAddSandwichToOrderClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
-        try {
-            // Determine bread type
-            Bread selectedBread;
+        if (checkEmptyFields()) {createPopUp();return;}
+        try {Bread selectedBread;
             if (sandwichBreadOptionCB.getValue() != null) {
                 switch (sandwichBreadOptionCB.getValue()) {
                     case "Brioche":
-                        selectedBread = Bread.BRIOCHE;
-                        break;
+                        selectedBread = Bread.BRIOCHE;break;
                     case "Wheat Bread":
-                        selectedBread = Bread.WHEAT_BREAD;
-                        break;
+                        selectedBread = Bread.WHEAT_BREAD;break;
                     case "Pretzel":
-                        selectedBread = Bread.PRETZEL;
-                        break;
+                        selectedBread = Bread.PRETZEL;break;
                     case "Sourdough":
-                        selectedBread = Bread.SOURDOUGH;
-                        break;
+                        selectedBread = Bread.SOURDOUGH;break;
                     case "Bagel":
-                        selectedBread = Bread.BAGEL;
+                        selectedBread = Bread.BAGEL;break;
                     default:
                         selectedBread = Bread.BRIOCHE;
                 }
-            } else {
-                selectedBread = Bread.BRIOCHE;
-            }
-
-            // Determine protein type
+            } else {selectedBread = Bread.BRIOCHE;}
             Protein selectedProtein;
             if (sandwichProteinCB.getValue() != null) {
                 switch (sandwichProteinCB.getValue()) {
                     case "Roast Beef":
-                        selectedProtein = Protein.ROAST_BEEF;
-                        break;
+                        selectedProtein = Protein.ROAST_BEEF;break;
                     case "Salmon":
-                        selectedProtein = Protein.SALMON;
-                        break;
+                        selectedProtein = Protein.SALMON;break;
                     case "Chicken":
-                        selectedProtein = Protein.CHICKEN;
-                        break;
+                        selectedProtein = Protein.CHICKEN;break;
                     default:
                         selectedProtein = Protein.CHICKEN;
                 }
-            } else {
-                selectedProtein = Protein.CHICKEN;
-            }
-
-            // Create list of addons
+            } else {selectedProtein = Protein.CHICKEN;}
             ArrayList<Addons> addons = new ArrayList<>();
-            if (lettuceCB.isSelected())
-                addons.add(Addons.LETTUCE);
-            if (tomatoesCB.isSelected())
-                addons.add(Addons.TOMATOES);
-            if (onionsCB.isSelected())
-                addons.add(Addons.ONIONS);
-            if (avocadoCB.isSelected())
-                addons.add(Addons.AVOCADO);
-            if (cheeseCB.isSelected())
-                addons.add(Addons.CHEESE);
+            if (lettuceCB.isSelected()){addons.add(Addons.LETTUCE);}if (tomatoesCB.isSelected()){addons.add(Addons.TOMATOES);}if (onionsCB.isSelected()){addons.add(Addons.ONIONS);}if (avocadoCB.isSelected()){addons.add(Addons.AVOCADO);}if (cheeseCB.isSelected()) {addons.add(Addons.CHEESE);}
+            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons, sandwichQuantitySpinner.getValue());OrderManager.getInstance().addItemToOrder(sandwich);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
+            Parent root = loader.load();controller.MainController mainController = loader.getController();mainController.navigateToCurrentOrderPanel();
+            Stage stage = (Stage) ((Node) sandwichPane).getScene().getWindow();Scene scene = new Scene(root);stage.setScene(scene);stage.show();
+        } catch (IOException e) {e.printStackTrace();}}
 
-            // Create the sandwich
-            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons,
-                    sandwichQuantitySpinner.getValue());
 
-            // Add to the order manager
-            OrderManager.getInstance().addItemToOrder(sandwich);
-
-            // Navigate to the current order panel using the main view with sidebar
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
-            Parent root = loader.load();
-
-            // Get the MainController to set the current order panel as visible
-            controller.MainController mainController = loader.getController();
-            mainController.navigateToCurrentOrderPanel();
-
-            // Get the scene and set it
-            Stage stage = (Stage) ((Node) sandwichPane).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Event handler that redirects user to combo screen and saves their sandwich
+      */
     @FXML
     protected void onMakeComboClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
+        if (checkEmptyFields()) {createPopUp();return;}
         try {
             // Create the sandwich first
             Bread selectedBread = sandwichBreadOptionCB.getValue() != null
@@ -306,38 +251,18 @@ public class SandwichPanelController {
                     : Protein.CHICKEN;
 
             ArrayList<Addons> addons = new ArrayList<>();
-            if (lettuceCB.isSelected())
-                addons.add(Addons.LETTUCE);
-            if (tomatoesCB.isSelected())
-                addons.add(Addons.TOMATOES);
-            if (onionsCB.isSelected())
-                addons.add(Addons.ONIONS);
-            if (avocadoCB.isSelected())
-                addons.add(Addons.AVOCADO);
-            if (cheeseCB.isSelected())
-                addons.add(Addons.CHEESE);
+            if (lettuceCB.isSelected()){addons.add(Addons.LETTUCE);}
+            if (tomatoesCB.isSelected()){addons.add(Addons.TOMATOES);}
+            if (onionsCB.isSelected()){addons.add(Addons.ONIONS);}
+            if (avocadoCB.isSelected()){addons.add(Addons.AVOCADO);}
+            if (cheeseCB.isSelected()) {addons.add(Addons.CHEESE);}
 
-            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons,
-                    sandwichQuantitySpinner.getValue());
-
-            // Load the combo panel with sidebar navigation
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/softwaremethproject4/panels/combo-panel.fxml"));
-            Parent root = loader.load();
-
-            // Initialize the combo panel with sandwich details
-            ComboPanelController comboController = loader.getController();
-            double basePrice = calculateSandwichPrice();
-            comboController.initializeWithItem("Sandwich", sandwich, basePrice, createSandwichDescription());
-
-            // Switch to the combo scene
-            Stage stage = (Stage) ((Node) sandwichPane).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            Sandwich sandwich = new Sandwich(selectedBread, selectedProtein, addons, sandwichQuantitySpinner.getValue());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/softwaremethproject4/panels/combo-panel.fxml"));
+            Parent root = loader.load();ComboPanelController comboController = loader.getController();
+            double basePrice = calculateSandwichPrice();comboController.initializeWithItem("Sandwich", sandwich, basePrice, createSandwichDescription());
+            Stage stage = (Stage) ((Node) sandwichPane).getScene().getWindow();Scene scene = new Scene(root);stage.setScene(scene);stage.show();
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     /**

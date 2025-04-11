@@ -154,13 +154,8 @@ public class SidePanelController {
      */
     @FXML
     protected void onAddSideToOrderClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
-        try {
-            // Determine side type
-            SideType selectedSideType;
+        if (checkEmptyFields()) {createPopUp();return;}
+        try {SideType selectedSideType;
             if (sideTypeCB.getValue() != null) {
                 switch (sideTypeCB.getValue()) {
                     case "Chips":
@@ -178,47 +173,22 @@ public class SidePanelController {
                     default:
                         selectedSideType = SideType.CHIPS;
                 }
-            } else {
-                selectedSideType = SideType.CHIPS;
-            }
+            } else {selectedSideType = SideType.CHIPS;}
 
             // Determine size
             Size selectedSize = Size.SMALL;
             for (Toggle toggle : sideSizeGroup.getToggles()) {
                 RadioButton radioButton = (RadioButton) toggle;
                 if (radioButton.isSelected()) {
-                    if (radioButton.getText().contains("Small")) {
-                        selectedSize = Size.SMALL;
-                    } else if (radioButton.getText().contains("Medium")) {
-                        selectedSize = Size.MEDIUM;
-                    } else if (radioButton.getText().contains("Large")) {
-                        selectedSize = Size.LARGE;
-                    }
-                    break;
-                }
-            }
-
-            // Create the side
-            Side side = new Side(selectedSize, selectedSideType, sideQuantitySpinner.getValue());
-            OrderManager.getInstance().addItemToOrder(side);
-
-            // Navigate to the current order panel using the main view with sidebar
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
-            Parent root = loader.load();
-
-            // Get the MainController to set the current order panel as visible
-            controller.MainController mainController = loader.getController();
-            mainController.navigateToCurrentOrderPanel();
-
-            // Get the scene and set it
-            Stage stage = (Stage) ((Node) sidePane).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                    if (radioButton.getText().contains("Small")) {selectedSize = Size.SMALL;}
+                    else if (radioButton.getText().contains("Medium")) {selectedSize = Size.MEDIUM;}
+                    else if (radioButton.getText().contains("Large")) {selectedSize = Size.LARGE;}
+                    break;}}
+            Side side = new Side(selectedSize, selectedSideType, sideQuantitySpinner.getValue());OrderManager.getInstance().addItemToOrder(side);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
+            Parent root = loader.load();controller.MainController mainController = loader.getController();mainController.navigateToCurrentOrderPanel();
+            Stage stage = (Stage) ((Node) sidePane).getScene().getWindow();Scene scene = new Scene(root);stage.setScene(scene);stage.show();
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     /**

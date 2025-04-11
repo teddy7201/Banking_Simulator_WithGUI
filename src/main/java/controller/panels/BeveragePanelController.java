@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 import java.io.IOException;
+import java.util.Objects;
 
-// Import the model classes
 import model.*;
 
 /**
  * This class is the controller for the BeveragePanel.
- * 
+ *
  * @author Zeyu weng
  */
 public class BeveragePanelController {
@@ -103,33 +103,13 @@ public class BeveragePanelController {
      */
     @FXML
     protected void onAddBeverageToOrderClick() {
-        if (checkEmptyFields()) {
-            createPopUp();
-            return;
-        }
+        if (checkEmptyFields()) {createPopUp();return;}
         try {
-            // Determine flavor type
             Flavor selectedFlavor = null;
-            if (beverageFlavorCB.getValue() != null) {
-                switch (beverageFlavorCB.getValue()) {
-                    case "Cola":
-                        selectedFlavor = Flavor.COKE;
-                        break;
-                    case "Tea":
-                        selectedFlavor = Flavor.ICED_TEA;
-                        break;
-                    case "Juice":
-                        selectedFlavor = Flavor.APPLE_JUICE;
-                        break;
-                    case "Water":
-                        selectedFlavor = Flavor.WATER;
-                        break;
-                    default:
-                        selectedFlavor = Flavor.COKE;
-                }
+            for(Flavor currentlFlavor: Flavor.values()){
+                if(Objects.equals(beverageFlavorCB.getValue(), currentlFlavor.getFlavorName())){selectedFlavor = currentlFlavor;}
             }
 
-            // Determine size
             Size selectedSize = Size.SMALL; // Default
             for (Toggle toggle : drinkSizeGroup.getToggles()) {
                 RadioButton radioButton = (RadioButton) toggle;
@@ -144,33 +124,22 @@ public class BeveragePanelController {
                     break;
                 }
             }
-
-            // Create the beverage
             Beverage beverage = new Beverage(selectedSize, selectedFlavor, beverageQuantitySpinner.getValue());
             OrderManager.getInstance().addItemToOrder(beverage);
-
-            // Navigate to the current order panel using the main view with sidebar
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/softwaremethproject4/hello-view.fxml"));
             Parent root = loader.load();
-
-            // Get the MainController to set the current order panel as visible
             MainController mainController = loader.getController();
             mainController.navigateToCurrentOrderPanel();
-
-            // Get the scene and set it
             Stage stage = (Stage) ((Node) beveragePane).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     /**
      * Checks if the fields are empty
-     * 
+     *
      * @return True if the fields are empty, false otherwise
      */
     public boolean checkEmptyFields() {

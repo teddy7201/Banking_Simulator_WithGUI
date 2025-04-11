@@ -85,7 +85,6 @@ public class Combo extends MenuItem {
             description.append(proteinName).append(" Sandwich Combo:\n");
         }
 
-        // Add sandwich details with bread type
         description.append(" - Base Item: ");
         description.append(sandwich.getBread().getBreadType()).append(" ");
         description.append(sandwich.getProtein().getProteinType()).append(" ");
@@ -100,12 +99,8 @@ public class Combo extends MenuItem {
             description.setLength(description.length() - 2);
         }
         description.append("\n");
+        description.append(" - Drink: ").append(beverage.getFlavor()).append(" (").append(beverage.getSize().getSizeName()).append(")\n");
 
-        // Add beverage details
-        description.append(" - Drink: ").append(beverage.getFlavor()).append(" (")
-                .append(beverage.getSize().getSizeName()).append(")\n");
-
-        // Add side details
         description.append(" - Side: ").append(side.toString().split("\n")[0]);
         description.append("\n");
         description.append("- Quantity: " + quantity);
