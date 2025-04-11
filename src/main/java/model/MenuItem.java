@@ -17,4 +17,6 @@ public abstract class MenuItem {
      * @return A double representing the price of the item.
      */
     public abstract double price();
+
+    public int getQuantity() {return quantity;}
 }

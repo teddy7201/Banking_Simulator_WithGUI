@@ -202,11 +202,11 @@ public class ComboPanelController {
             // Create combo with original item, beverage, and side
             Combo combo;
             if (originalItem instanceof Sandwich) {
-                combo = new Combo((Sandwich) originalItem, beverage, side, 1);
+                combo = new Combo((Sandwich) originalItem, beverage, side, ((Sandwich) originalItem).getQuantity());
             } else if (originalItem instanceof Burger) {
                 // Need to wrap Burger in a Combo
                 Sandwich burger = (Sandwich) originalItem; // Burger extends Sandwich
-                combo = new Combo(burger, beverage, side, 1);
+                combo = new Combo(burger, beverage, side, burger.getQuantity());
             } else {
                 // Fallback case - should not happen if panels are working properly
                 throw new IllegalStateException("Unknown original item type in combo: " + itemType);

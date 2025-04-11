@@ -26,7 +26,9 @@ public class Combo extends MenuItem {
 
     @Override
     public double price() {
-        return this.sandwich.price() + 2.00;
+        double price = 0;
+        price = this.sandwich.price() + (2.00 * quantity);
+        return price;
     }
 
     @Override
@@ -66,7 +68,9 @@ public class Combo extends MenuItem {
 
         // Add side details
         description.append(" - Side: ").append(side.toString().split("\n")[0]);
-
+        description.append("\n");
+        description.append("- Quantity: " + quantity);
+        description.append("\n");
         return description.toString();
     }
 }

@@ -67,6 +67,7 @@ public class Sandwich extends MenuItem {
         price += this.protein.getPrice();
 
         if (addOns.isEmpty()) {
+            price = price * quantity;
             return price;
         } else {
             for (Addons addon : addOns) {
