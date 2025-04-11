@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="Fixed Minor bugs although combo still has a slight bug with the pricing.">
+    <list default="true" id="fb8adc8a-a954-407d-a776-44b44af79445" name="Changes" comment="Final touches">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/AllOrdersPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BeveragePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/BurgerPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/ComboPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/CurrentOrderPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SandwichPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/panels/SidePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Combo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Combo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/OrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/combo-panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/panels/combo-panel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/model/Addons.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/model/Bread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/model/MenuItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/model/Protein.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/model/Sandwich.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softwaremethproject4/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softwaremethproject4/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +41,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
     &quot;associatedIndex&quot;: 4
     }</component>
@@ -57,22 +55,26 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-    &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PriceTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;henry&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
-    }
-    }</component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "JUnit.PriceTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "henry",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/softwaremethproject4/Images" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PriceTest">
+  <component name="RunManager" selected="Application.HelloApplication">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.softwaremethproject4.HelloApplication" />
       <module name="Software-Meth-Project-4" />
@@ -103,8 +105,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PriceTest" />
         <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="JUnit.PriceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -150,13 +152,22 @@
       <option name="project" value="LOCAL" />
       <updated>1744327119134</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Final touches">
+      <option name="closed" value="true" />
+      <created>1744337262414</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744337262414</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed price bug, implmented logic to let the gui write orders to a file, updated All Orders screen and fixed up smaller details within the model and controllers." />
     <MESSAGE value="Updated junit tests to let them properly test the prices of burgers and sandwiches." />
     <MESSAGE value="Fixed Minor bugs although combo still has a slight bug with the pricing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Minor bugs although combo still has a slight bug with the pricing." />
+    <MESSAGE value="Final touches" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final touches" />
   </component>
 </project>
